@@ -59,9 +59,9 @@
                 <button type="button" id="btnLoadBra" class="btn btn-primary -md  " onclick="Addtask();"><i
                         class="icon-square-plus-outline"></i> &nbsp; Crear Tareas</button>
 
-                <button type="button" id="btnLoadBra" class="btn btn-secondary -md "
+                <!--<button type="button" id="btnLoadBra" class="btn btn-secondary -md "
                     onclick=" viewTaskSinAsignar('SinAsignar');"><i class="icon-visible"></i> &nbsp;
-                    Tareas Sin Asignar</button>
+                    Tareas Sin Asignar</button>-->
 
             </div>
         </section>
@@ -444,7 +444,7 @@
         let addtextDescripcion = $("#addtextDescripcion").val();
         let select1 = document.getElementById("addselectUsuario");
         let addselectUsuario = select1.options[select1.selectedIndex].value;
-        var addselectUsuarioName = select1.options[select1.selectedIndex].text;
+        let addselectUsuarioName = select1.options[select1.selectedIndex].text;
         let select2 = document.getElementById("addselectStatus");
         let addselectStatus = select2.options[select2.selectedIndex].value;
         let datepicker1 = $("#datepicker1").val();
@@ -455,8 +455,12 @@
         var nextId = maxId + 1;
         var fechaCreacion = formatFecha(new Date());
         if (addselectUsuario == '999') {
-            addselectUsuario = null;
-            addselectUsuarioName = null;
+            alert('Debe seleccionar un usuario!');
+            return;
+        };
+        if (addselectStatus == 'Seleccionar') {
+            alert('Debe seleccionar un estado!');
+            return;
         };
 
         tareas.push([nextId, addNameTask, addtextDescripcion, fechaCreacion, null, null, addselectUsuario, addselectStatus, addselectUsuarioName, null, null, null, null],)
