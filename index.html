@@ -17,7 +17,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <!-- Estilos -->
-    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -29,6 +29,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
 </head>
 
 <body>
@@ -37,8 +38,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                        <img src="./public/imagenes/descarga.png" alt="Login" width="90" height="55"
-                            class="img-responsive">
+                        <img src="./imagenes/descarga.png" alt="Login" width="90" height="55" class="img-responsive">
                         <span class="titlePage">Task Manager - TP</span> </a>
                     <div class=" navbar-toggler-right">
                         <div class="navbar-nav me-2">
@@ -178,7 +178,10 @@
     </footer>
 
 </body>
-
+<!-- Datos -->
+<script src="./tareas.js"></script>
+<script src="./usuarios.js"></script>
+<!-- Datos -->
 <script>
 
     $(window).on('load', function () {
@@ -186,19 +189,14 @@
         getDatos();
     });
 
+    var usuarios = allUsers;
+    var tareas = alltask;
 
     function cargaUsuarios() {
-        //Datos
-        var allUsers = [
-            [1, 'RomanA'],
-            [2, 'FlorenciaR'],
-            [3, 'MatiasA'],
-            [4, 'ConradoG'],
-        ];
 
         document.getElementById("addselectUsuario").options.length = 0; // reseteo el select
         $('#addselectUsuario').append($('<option>', { value: '999', text: 'Seleccionar', selectedIndex: 0 }));
-        var jsonData = JSON.parse(JSON.stringify(allUsers))
+        var jsonData = JSON.parse(JSON.stringify(usuarios))
         for (var i = 0; i < jsonData.length; i++) {
             var counter = jsonData[i];
             $('#addselectUsuario').append($('<option>', {
@@ -208,18 +206,10 @@
         }
     };
 
-    var retorno = [
-        [63, 'Prueba 3 Tarea sin asignar', 'Prueba 3 Tarea sin asignar', '2024-03-25T18:24:58.000Z', null, '2024-04-03T19:47:03.000Z', 4, 6, 'ConradoG', null, null, null, null],
-        [61, 'Prueba 1 Tarea sin asignar', 'Prueba 1 Tarea sin asignar', '2024-03-25T18:24:16.000Z', '2024-03-26T03:00:00.000Z', '2024-03-31T03:00:00.000Z', 3, 5, 'FlorenciaR', null, null, null, null],
-        [81, 'Prueba de carga', 'otra mas', '2024-04-04T18:46:10.000Z', '2024-04-30T03:00:00.000Z', '2024-05-30T03:00:00.000Z', 1, 1, 'MatiasL', null, null, null, null],
-        [83, '123123123', '123123123', '2024-04-04T20:49:05.000Z', null, null, 1, null, null, null, null, null, null],
-        [82, 'Prueba de carga', 'Prueba de carga111111', '2024-04-04T20:25:33.000Z', '2024-04-26T03:00:00.000Z', '2024-06-21T03:00:00.000Z', 1, 2, 'FlorenciaR', null, null, null, null],
-        [62, 'Prueba 2 Tarea sin asignar', 'Prueba 2 Tarea sin asignar', '2024-03-25T18:24:42.000Z', null, null, 2, 1, 'RomanA', 41, 62, 'A la espera de respuesta de operador telefonico.', '2024-04-03T21:24:54.000Z']
-    ];
-
     async function getDatos() {
-        generarTarjetas(retorno);
-    }
+        generarTarjetas(tareas);
+    };
+
     function generarTarjetas(datos) {
         console.log(datos)
         let conteos = {};
@@ -296,9 +286,9 @@
 
 
     function createCard(idUsuario, tareas) {
-        let card = `<div class="card m-1 text-bg-light col-auto card-header-PT">
-                        <div class="card-header text-center">${idUsuario}</div>
-                        <div class="card-body">
+        let card = `<div class="card m-1 text-bg-light col-auto card-header-PT cardTP">
+                        <div class="card-headerTP text-center">${idUsuario}</div>
+                        <div class="card-bodyTP">
                             <b>Tareas:</b>
                             <p class="card-text-task">Asignadas: <span>${tareas.asignadas}</span></p>
                             <p class="card-text-task">En proceso: <span>${tareas.enProceso}</span></p>
@@ -346,8 +336,8 @@
         }
 
         let task = `<div class="card m-1 text-bg-light col-2 card-header-PT cardTask"  id="${tarea[0]}" data-usuario="${usuario || 'SinAsignar'}">
-            <div class="card-header text-center ${color}">${tarea[1]}</div>
-            <div class="card-body col-12">
+            <div class="card-headerTP text-center ${color}">${tarea[1]}</div>
+            <div class="card-bodyTP col-12">
                 <form id="formTask_${tarea[0]}" action="">
                     <input type="text"  id="inputTaskId_${tarea[0]}" value="${tarea[0]}" style="display: none;">
                     <input type="text"  id="inputUserId_${tarea[0]}" value="${tarea[7]}" style="display: none;">
@@ -369,7 +359,7 @@
                                         <option value="4">RoyA</option>
                                         <option value="7">TomasV</option>
                                     </select>`
-                    : ''}
+                : ''}
                     <chi-label for="selectStatus" ata-placement="top" data-toggle="tooltip" title="" data-original-title="Seleccione el estado">
                         Estado</chi-label>
                         <select class="form-select form-select-sm col-12" id="selectStatus_${tarea[0]}" aria-label="Small select example">
@@ -424,10 +414,6 @@
         } else {
             tareas.show();
         }
-        /*if (document.body.scrollHeight > window.innerHeight) {
-            document.body.style.transform = "scale(0.8)";
-            //document.body.style.transformOrigin = "top left";
-        }*/
     }
 
     function viewTaskSinAsignar(idUsuario) {
@@ -441,10 +427,6 @@
         } else {
             tareas.show();
         }
-        /*if (document.body.scrollHeight > window.innerHeight) {
-            document.body.style.transform = "scale(0.8)";
-            //document.body.style.transformOrigin = "top left";
-        }*/
     }
 
 
@@ -456,70 +438,42 @@
         $("#modalTotal").modal("toggle");
     };
 
-    function closeModal() {
-        $("#modalTotal").modal("toggle");
-    };
 
     function addNewTask() {
         let addNameTask = $("#addNameTask").val();
         let addtextDescripcion = $("#addtextDescripcion").val();
         let select1 = document.getElementById("addselectUsuario");
         let addselectUsuario = select1.options[select1.selectedIndex].value;
+        var addselectUsuarioName = select1.options[select1.selectedIndex].text;
         let select2 = document.getElementById("addselectStatus");
         let addselectStatus = select2.options[select2.selectedIndex].value;
         let datepicker1 = $("#datepicker1").val();
         let datepicker2 = $("#datepicker2").val();
 
-        $.ajax({
-            url: '<%= process.env.SRV_PH %>/task/addNewTask',
-            type: 'GET',
-            data: {
-                NameTask: addNameTask,
-                textDescripcion: addtextDescripcion,
-                idUsuario: addselectUsuario,
-                idStatus: addselectStatus,
-                fechaInicio: datepicker1,
-                fechaFin: datepicker2
-            },
-            beforeSend: function () {
-                document.body.style.cursor = 'wait'; // cambia el cursor a espera
-            },
-            async: true,
-            error: function (xhr, status, error) {
-                if (xhr.status == 408) {
-                    $.confirm({
-                        title: 'Alert!',
-                        content: 'Your session has expired. Please relogin',
-                        buttons: {
-                            Login: function () {
-                                window.open('<%= process.env.SRV_PH %>/login', '_self');
-                            },
-                        }
-                    });
-                } else {
-                    $.alert({ title: 'Alert!', content: `Error en la busqueda - ${error}` });
-                }
-            },
-            success: function (respuesta) {
-                if (respuesta) {
-                    null;
-                    $.alert({ title: 'Mensaje!', content: `Se creo la tarea  Id: ${respuesta[0].idTarea} Nombre: ${respuesta[0].NameTask}` });
-                } else {
-                    $.alert({ title: 'Error!', content: `No se pudo crear tarea` });
-                }
-            },
-            complete: function () {
-                closeModal();
-                // Vaciar los contenedores de las tarjetas
-                $('#tarjetasUsuarios').empty();
-                $('#tareasUsuarios').empty();
-                $('#tareasUsuariosCerradas').empty();
-                $('#tareasSinAsignar').empty();
-                getDatos();
-                document.body.style.cursor = 'default'; // cambia el cursor a espera
-            }
-        });
+        // obtengo el id y sumo uno para agregar la proxima tarea
+        var maxId = Math.max(...tareas.map(task => task[0]));
+        var nextId = maxId + 1;
+        var fechaCreacion = formatFecha(new Date());
+        if (addselectUsuario == '999') {
+            addselectUsuario = null;
+            addselectUsuarioName = null;
+        };
+
+        tareas.push([nextId, addNameTask, addtextDescripcion, fechaCreacion, null, null, addselectUsuario, addselectStatus, addselectUsuarioName, null, null, null, null],)
+
+        closeModal();
+        // Vaciar los contenedores de las tarjetas
+        $('#tarjetasUsuarios').empty();
+        $('#tareasUsuarios').empty();
+        $('#tareasUsuariosCerradas').empty();
+        $('#tareasSinAsignar').empty();
+        getDatos();
     };
+
+    function closeModal() {
+        $("#modalTotal").modal("toggle");
+    };
+
 
     function saveTask(id) {
         let inputTaskId = $(`#inputTaskId_${id}`).val();

@@ -201,27 +201,27 @@
         }
 
         /* Cards -  Estilo para la tarjeta */
-        .card {
+        .cardTP {
             margin: 1em;
             width: 100%;
-            /* Cambiamos esto a 80% para móviles */
             background-color: lightgray;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         /* Estilo para el cuerpo de la tarjeta */
-        .card-body {
+        .card-bodyTP {
             padding: 20px;
         }
 
         /* Estilo para el pie de la tarjeta */
-        .card-footer {
+        .card-footerTP {
             text-align: center;
             padding: 10px;
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
         }
+
         .card:hover {
             transform: scale(1.03);
             box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
@@ -243,24 +243,16 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
         }
 
-        .card-header {
+        .card-headerTP {
             font-size: medium;
-            --font-size: 20px;
-            text-align: center;
             font-weight: bold;
-            background-color:blueviolet;
+            background-color: cadetblue;
+            padding: 10px;
+            border-radius: 20px;
+            --border-top-left-radius: 5px;
+            --border-top-right-radius: 5px;
         }
 
-        /* Estilo para el encabezado de la tarjeta 
-        .card-header1 {
-            text-align: center;
-            color: white;
-            background-color: red;
-            padding: 10px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-*/
         .card-text-task {
             margin-bottom: 0;
             /* Esto quita el espacio debajo de cada línea */
@@ -268,18 +260,19 @@
 
         .card-header-PT {
             text-align: center;
-            color:black;
-            --background-color: red;
+            color: black;
             padding: 10px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            border-radius: 20px;
+            --border-top-left-radius: 5px;
+            --border-top-right-radius: 5px;
             padding: initial;
         }
 
         .border-card {
             border-color: cornflowerblue;
         }
-        .cardModal{
+
+        .cardModal {
             margin: 1em;
             --width: 100%;
             border: 1rem;
@@ -287,4 +280,20 @@
             background-color: beige;
             border-radius: 5px;
             --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Color de card */
+        .text-bg-warning {
+            background-color: yellow;
+            color: black;
+        }
+
+        .text-bg-success {
+            background-color: green;
+            color: black;
+        }
+
+        .text-bg-danger {
+            background-color: red;
+            color: white;
         }
