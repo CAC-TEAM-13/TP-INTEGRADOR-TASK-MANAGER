@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- font-awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -21,7 +18,7 @@
         crossorigin="anonymous"></script>
     <!-- Estilos -->
     <link rel="stylesheet" href="./css/style.css">
-
+    <title>Task Manager</title>
 </head>
 
 <body>
@@ -32,74 +29,55 @@
 
     <main>
         <form>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-                <input type="email" id="form2Example1" class="form-control" />
-                <label class="form-label" for="form2Example1">Email address</label>
-            </div>
+            <section class="content container-fluid col-12">
+                <div class="d-flex justify-content-center">
+                    <div class=" text-center">
 
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-                <input type="password" id="form2Example2" class="form-control" />
-                <label class="form-label" for="form2Example2">Password</label>
-            </div>
+                        <label class="form-label" for="nombre">Nombre</label>
+                        <input type="text" id="nombre" class="form-control" />
 
-            <!-- 2 column grid layout for inline styling -->
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                        <label class="form-label" for="password">Clave</label>
+                        <input type="password" id="password" class="form-control" />
+                        <br>
+                        <button type="button" class="btn btn-primary btn-block mb-4 col-12"
+                            onclick="guardarNombre()">Sign
+                            in</button>
+
+                        <div class="col d-flex justify-content-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                <label class="form-check-label" for="form2Example31"> Recordar </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="#!">Olvidaste la contraseña?</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
-                </div>
-            </div>
-
-            <!-- Submit button -->
-            <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-            <!-- Register buttons -->
-            <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
-                <p>or sign up with:</p>
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                </button>
-            </div>
+            </section>
         </form>
 
     </main>
     <footer>
         <section class="content">
             <nav class="navbar bottom">
-                <a class="navbar-brand" href="#">Preguntas Frecuentes</a>
-                <a class="navbar-brand" href="#">Contáctanos</a>
-                <a class="navbar-brand" href="#">Prensa</a>
-                <a class="navbar-brand" href="#">Conferencias</a>
+                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
+                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
                 <a class="navbar-brand" href="#">Términos y Condiciones</a>
-                <a class="navbar-brand" href="#">Privacidad</a>
-                <a class="navbar-brand"  href="./estudiantes.html">Estudiantes</a>
             </nav>
         </section>
     </footer>
 
+    <!-- Datos de Sesion -->
+    <script src="./js/sesiones.js"></script>
+    <!-- Datos -->
+    <script src="./js/usuarios.js"></script>
+    <script>
+        window.onload = function () {
+            actualizarEstadoSesion();
+        };
+    </script>
 </body>
 
 </html>

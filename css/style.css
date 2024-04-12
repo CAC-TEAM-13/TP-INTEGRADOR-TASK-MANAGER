@@ -1,299 +1,383 @@
-        /* estilo para el body */
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-            background-color: beige;
-            height: 100%;
-            width: 100%;
-        }
+:root {
+    --bg-color: #e9f2f9;
+    --primary-color: #1b325f;
+    --secondary-color: #9cc4e4;
+    --third-color: #3a89c9;
+    --third-bis-color: #f26c4f;
+}
 
-        html {
-            height: 100%;
-            width: 100%;
-        }
-
-        footer {
-            --display: flex;
-            align-items: center;
-            margin-top: auto;
-            position: static;
-            bottom: 0;
-            height: 100px;
-            width: 100%;
-        }
+/* *{
+    font-family: "Roboto", sans-serif !important;
+} */
 
 
-        /* Media query para pantallas medianas (tabletas, etc.) */
-        @media (min-width: 768px) {
-            .card {
-                width: 80%;
-                /* La tarjeta ocupará el 50% del ancho de la pantalla en tabletas */
-            }
-        }
+button p {
+    color: #fff;
+}
 
-        /* Media query para pantallas grandes (ordenadores de escritorio, etc.) */
-        @media (min-width: 1024px) {
-            .card {
-                width: 30%;
-                /* La tarjeta ocupará el 20% del ancho de la pantalla en ordenadores de escritorio */
-            }
-        }
+a {
+    text-decoration: none;
+}
 
-        /* Estilo para el contenedor */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+span {
+    padding: 5px;
+    display: inline-block;
+}
 
-        .centrar {
-            margin: 0 auto;
-            padding: 0 0.8em;
-        }
+/* estilo para el body */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--bg-color) !important;
+    height: 100%;
+    width: 100%;
+}
 
-        /* Estilo para los botones */
-        /*.btn {
-            color: white;
-            --background-color: black;
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: block;
-        }*/
+html {
+    height: 100%;
+    width: 100%;
+}
 
-        .Nombre {
-            font-size: 20px;
+footer {
+    --display: flex;
+    align-items: center;
+    margin-top: auto;
+    position: static;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+
+
+/* Media query para pantallas medianas (tabletas, etc.) */
+@media (min-width: 768px) {
+    .card {
+        width: 80%;
+        /* La tarjeta ocupará el 50% del ancho de la pantalla en tabletas */
+    }
+}
+
+/* Media query para pantallas grandes (ordenadores de escritorio, etc.) */
+@media (min-width: 1024px) {
+    .card {
+        width: 30%;
+        /* La tarjeta ocupará el 20% del ancho de la pantalla en ordenadores de escritorio */
+    }
+}
+
+.buttonform {
+    height: 40px;
+    text-align: center;
+    background-color: var(--third-color);
+    color: #f0f0f0;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary{
+    background-color: var(--third-color) !important;
+    border: 0px !important;
+    margin: 5px;
+}
+
+.btn-secondary{
+    background-color: var(--third-bis-color) !important;
+    border: 0px !important;
+}
+
+.card{
+    box-sizing: border-box !important;
+    padding: 0px !important;
+}
+
+/* Estilo para el contenedor */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.centrar {
+    margin: 0 auto;
+    padding: 0 0.8em;
+}
+
+.Nombre {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.NombreWhite {
+    font-size: 20px;
+    text-align: left;
+    color: white;
+}
+
+.Texto {
+    font-size: 12px;
+    text-align: justify;
+    padding-bottom: 5%;
+}
+
+.TextoMd {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.TextoCard {
+    font-size: 12px;
+    text-align: justify;
+    padding: 12px;
+    display: inline-block;
+}
+
+.TextoWhiteHeader {
+    color: white;
+    font-size: 15px;
+    text-align: right;
+    height: 50% !important;
+    padding-right: 6%;
+}
+
+.TextoLeft {
+    font-size: 12px;
+    text-align: left;
+}
+
+.Abadged {
+    --display: table-cell;
+}
+
+.TextMediano {
+    font-size: 10px;
+}
+
+.fondoTexto {
+    background-color: rgba(43, 42, 42, 0.945);
+}
+
+.TextoWhite {
+    color: white;
+    font-size: 13px;
+    text-align: justify;
+}
+
+.navbar-expand-lg {
+    background-color: rgb(65, 64, 64);
+    justify-content: right;
+}
+
+.bottom {
+    background-color: rgb(51, 77, 126);
+    justify-content: center;
+}
+
+.bg-danger {
+    color: white;
+}
+
+.bg-info {
+    color: white;
+}
+
+.bg-secondary {
+    color: white;
+}
+
+.titlePage {
+    font-size: 18px;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    font-size: 14px;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    white-space: normal
+}
+
+.a:hover {
+    transform: scale(1.05);
+    font-size: 16px;
+}
+
+.navbar-brand:hover{
+    color: var(--third-bis-color);
+}
+
+.nav-link:hover{
+    color: var(--third-bis-color)
+}
+
+.imgBgHeader {
+    filter: brightness(50%);
+}
+
+.btnHeader {
+    display: inline-block;
+    margin-right: 1px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* Page Estudiantes */
+.integrantes {
+    text-align: center;
+    font-size: medium;
+    color: darkcyan;
+}
+
+.titulo {
+    text-align: center;
+    font-size: xx-large;
+    color: darkcyan
+}
+
+/* Cards -  Estilo para la tarjeta */
+.card {
+    margin: 1em;
+    width: 100%;
+    /* Cambiamos esto a 80% para móviles */
+    background-color: lightgray;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para el cuerpo de la tarjeta */
+.card-body {
+    padding: 20px;
+}
+
+/* Estilo para el pie de la tarjeta */
+.card-footer {
+    text-align: center;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.cardTask {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cardTask:hover {
+    --transform: translate(-0.1%, -0.1%);
+    --animation: translate 2s linear;
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.card-header {
+    font-size: medium;
+    text-align: center;
+    font-weight: bold;
+}
+
+.button-top{
+    padding: 15px;
+}
+
+/* Estilo para el encabezado de la tarjeta 
+        .card-header1 {
             text-align: center;
-            font-weight: bold;
-        }
-
-
-        .NombreWhite {
-            font-size: 20px;
-            text-align: left;
             color: white;
-        }
-
-        .Texto {
-            font-size: 12px;
-            text-align: justify;
-            padding-bottom: 5%;
-        }
-
-        .TextoMd {
-            font-size: 16px;
-            text-align: justify;
-        }
-
-        .TextoCard {
-            font-size: 12px;
-            text-align: justify;
-            padding: 12px;
-            display: inline-block;
-        }
-
-        .TextoWhiteHeader {
-            color: white;
-            font-size: 15px;
-            text-align: right;
-            height: 50% !important;
-            padding-right: 6%;
-        }
-
-        .TextoLeft {
-            font-size: 12px;
-            text-align: left;
-        }
-
-        .Abadged {
-            --display: table-cell;
-        }
-
-        .TextMediano {
-            font-size: 10px;
-        }
-
-        .fondoTexto {
-            background-color: rgba(43, 42, 42, 0.945);
-        }
-
-        .TextoWhite {
-            color: white;
-            font-size: 13px;
-            text-align: justify;
-        }
-
-        .navbar-expand-lg {
-            background-color: rgb(65, 64, 64);
-            justify-content: right;
-        }
-
-        .bottom {
-            background-color: rgb(51, 77, 126);
-            justify-content: center;
-        }
-
-        span {
-            padding: 5px;
-            display: inline-block;
-        }
-
-
-        .bg-danger {
-            color: white;
-        }
-
-        .bg-info {
-            color: white;
-        }
-
-        .bg-secondary {
-            color: white;
-        }
-
-        #textVerde {
-            color: green;
-        }
-
-        .titlePage {
-            font-size: 18px;
-            color: white;
-        }
-
-        .navbar a {
-            color: white;
-            font-size: 14px;
-            justify-content: center;
-            margin-right: 15px;
-            margin-left: 15px;
-            white-space: normal
-        }
-
-        .a:hover {
-            transform: scale(1.05);
-            font-size: 16px;
-        }
-
-        .imgBgHeader {
-            filter: brightness(50%);
-        }
-
-        .btnHeader {
-            display: inline-block;
-            margin-right: 1px;
-            font-size: 13px;
-            margin-top: 10px;
-        }
-
-        /* Page Estudiantes */
-        .integrantes {
-            text-align: center;
-            font-size: medium;
-            color: darkcyan;
-        }
-
-        .titulo {
-            text-align: center;
-            font-size: xx-large;
-            color: darkcyan
-        }
-
-        /* Cards -  Estilo para la tarjeta */
-        .cardTP {
-            margin: 1em;
-            width: 100%;
-            background-color: lightgray;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Estilo para el cuerpo de la tarjeta */
-        .card-bodyTP {
-            padding: 20px;
-        }
-
-        /* Estilo para el pie de la tarjeta */
-        .card-footerTP {
-            text-align: center;
-            padding: 10px;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-
-        .card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-        }
-
-        .cardTask {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
-            cursor: pointer;
-            transition: 0.5s;
-        }
-
-        .cardTask:hover {
-            --transform: translate(-0.1%, -0.1%);
-            --animation: translate 2s linear;
-            opacity: 1;
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-        }
-
-        .card-headerTP {
-            font-size: medium;
-            font-weight: bold;
-            background-color: cadetblue;
-            padding: 10px;
-            border-radius: 20px;
-            --border-top-left-radius: 5px;
-            --border-top-right-radius: 5px;
-        }
-
-        .card-text-task {
-            margin-bottom: 0;
-            /* Esto quita el espacio debajo de cada línea */
-        }
-
-        .card-header-PT {
-            text-align: center;
-            color: black;
-            padding: 10px;
-            border-radius: 20px;
-            --border-top-left-radius: 5px;
-            --border-top-right-radius: 5px;
-            padding: initial;
-        }
-
-        .border-card {
-            border-color: cornflowerblue;
-        }
-
-        .cardModal {
-            margin: 1em;
-            --width: 100%;
-            border: 1rem;
-            /* Cambiamos esto a 80% para móviles */
-            background-color: beige;
-            border-radius: 5px;
-            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Color de card */
-        .text-bg-warning {
-            background-color: yellow;
-            color: black;
-        }
-
-        .text-bg-success {
-            background-color: green;
-            color: black;
-        }
-
-        .text-bg-danger {
             background-color: red;
-            color: white;
+            padding: 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
+*/
+.card-text-task {
+    margin-bottom: 0;
+    /* Esto quita el espacio debajo de cada línea */
+}
+
+.card-header-PT {
+    text-align: center;
+    color: black;
+    --background-color: red;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: initial;
+}
+
+.border-card {
+    border-color: cornflowerblue;
+}
+
+.cardModal {
+    margin: 1em;
+    --width: 100%;
+    border: 1rem;
+    /* Cambiamos esto a 80% para móviles */
+    background-color: beige;
+    border-radius: 5px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.fcontacto {
+    width: 460px;
+    height: auto;
+    margin: auto;
+    border-radius: 10px;
+    padding-top: 30px;
+    background-color: #fbfbfb;
+    padding-left: 30px;
+}
+
+/* input {
+    background-color: #fbfbfb;
+    height: 40px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F2F2F5;
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    background-color: #fbfbfb;
+    width: 405px;
+    height: 150px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F2F2F5;
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+}
+
+label {
+    display: block;
+    float: center;
+} */
+
+#textVerde {
+    color: green;
+}
