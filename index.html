@@ -24,11 +24,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
     <title>Task Manager</title>
 </head>
 
-<body>
+<body onload="mostrarNombre()">
     <header>
         <section>
             <div>
@@ -38,10 +39,12 @@
                             <img src="./imagenes/descarga.png" alt="Login" width="90" height="55"
                                 class="img-responsive">
                             <span class="titlePage">Task Manager - TP</span> </a>
+                        <div class="titlePage" id="menu">Hola <span id="nombre"></span></div>
                         <div class=" navbar-toggler-right">
                             <div class="navbar-nav me-2">
-                                <a class="nav-link" href="./index.html">Inicio</a>
-                                <a class="nav-link" href="./help.html">Ayuda</a>
+                                <span><a class="nav-link" href="./index.html">Inicio</a></span>
+                                <span><a class="nav-link" href="./help.html">Ayuda</a></span>
+                                <span id="sesionEstado"></span>
                             </div>
                         </div>
                     </div>
@@ -54,12 +57,12 @@
 
             <div class="button-top">
 
-                <button type="button" id="btnLoadBra" class="btn btn-primary -md  " onclick="Addtask();"><i
+                <button type="button" id="btnAddTask" class="btn btn-primary -md  " onclick="Addtask();"><i
                         class="icon-square-plus-outline"></i> &nbsp; Crear Tareas</button>
 
-                <button type="button" id="btnLoadBra" class="btn btn-secondary -md "
+                <!--<button type="button" id="btnLoadBra" class="btn btn-secondary -md "
                     onclick=" viewTaskSinAsignar('SinAsignar');"><i class="icon-visible"></i> &nbsp;
-                    Tareas Sin Asignar</button>
+                    Tareas Sin Asignar</button>-->
 
             </div>
         </section>
@@ -128,18 +131,6 @@
                                         <option value="3">En Espera</option>
                                         <option value="4">Cerrado</option>
                                     </select>
-                                    <div class="input-group mb-3" style="padding-top: 7px;">
-                                        <div class="form-floating mb-4 d-flex" style="padding-right: 5%;">
-                                            <input type="text" class="datepicker_input form-control border-2"
-                                                id="datepicker1" required placeholder="DD/MM/YYYY">
-                                            <label for="datepicker1">Fecha Inicia</label>
-                                        </div>
-                                        <div class="form-floating mb-4 d-flex">
-                                            <input type="text" class="datepicker_input form-control border-2"
-                                                id="datepicker2" required placeholder="DD/MM/YYYY">
-                                            <label for="datepicker2">Fecha Finaliza</label>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="card-footer text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -171,128 +162,142 @@
             </nav>
         </section>
     </footer>
-</body>
-<script>
 
-    $(window).on('load', function () {
-        cargaUsuarios();
-        getDatos();
-    });
+    <!-- Datos de Sesion -->
+    <script src="./js/sesiones.js"></script>
 
+    <!-- Datos -->
+    <script src="./js/tareas.js"></script>
+    <script src="./js/usuarios.js"></script>
 
-    function cargaUsuarios() {
-        //Datos
-        var allUsers = [
-            [1, 'RomanA'],
-            [2, 'FlorenciaR'],
-            [3, 'MatiasA'],
-            [4, 'ConradoG'],
-        ];
+    <script>
 
-        document.getElementById("addselectUsuario").options.length = 0; // reseteo el select
-        $('#addselectUsuario').append($('<option>', { value: '999', text: 'Seleccionar', selectedIndex: 0 }));
-        var jsonData = JSON.parse(JSON.stringify(allUsers))
-        for (var i = 0; i < jsonData.length; i++) {
-            var counter = jsonData[i];
-            $('#addselectUsuario').append($('<option>', {
-                value: counter[0],
-                text: counter[1]
-            }));
-        }
-    };
+        $(window).on('load', function () {
+            actualizarEstadoSesion();
+            cargaUsuarios();
+            getDatos();
+            deshabilitarBotones();
+        });
 
-    var retorno = [
-        [63, 'Prueba 3 Tarea sin asignar', 'Prueba 3 Tarea sin asignar', '2024-03-25T18:24:58.000Z', null, '2024-04-03T19:47:03.000Z', 4, 6, 'ConradoG', null, null, null, null],
-        [61, 'Prueba 1 Tarea sin asignar', 'Prueba 1 Tarea sin asignar', '2024-03-25T18:24:16.000Z', '2024-03-26T03:00:00.000Z', '2024-03-31T03:00:00.000Z', 3, 5, 'FlorenciaR', null, null, null, null],
-        [81, 'Prueba de carga', 'otra mas', '2024-04-04T18:46:10.000Z', '2024-04-30T03:00:00.000Z', '2024-05-30T03:00:00.000Z', 1, 1, 'MatiasL', null, null, null, null],
-        [83, '123123123', '123123123', '2024-04-04T20:49:05.000Z', null, null, 1, null, null, null, null, null, null],
-        [82, 'Prueba de carga', 'Prueba de carga111111', '2024-04-04T20:25:33.000Z', '2024-04-26T03:00:00.000Z', '2024-06-21T03:00:00.000Z', 1, 2, 'FlorenciaR', null, null, null, null],
-        [62, 'Prueba 2 Tarea sin asignar', 'Prueba 2 Tarea sin asignar', '2024-03-25T18:24:42.000Z', null, null, 2, 1, 'RomanA', 41, 62, 'A la espera de respuesta de operador telefonico.', '2024-04-03T21:24:54.000Z']
-    ];
+        // si el usuario no esta loguado no puede hacer nada en la pagina
+        function deshabilitarBotones() {
+            //Obtengo el nombre de usuario
+            var nombre = localStorage.getItem('nombre');
 
-    async function getDatos() {
-        generarTarjetas(retorno);
-    }
-    function generarTarjetas(datos) {
-        console.log(datos)
-        let conteos = {};
-        let tareas = {};
-
-        for (let fila of datos) {
-            let idUsuario = fila[8] || 'Sin-Asignar';
-            let estadoTarea = fila[6];
-            let idTarea = fila[0];
-            let comentario = fila[11];
-            let fechaComentario = fila[12];
-
-            if (!conteos[idUsuario]) {
-                conteos[idUsuario] = {
-                    asignadas: 0,
-                    enProceso: 0,
-                    cerradas: 0
-                };
-            }
-
-            if (!tareas[idTarea]) {
-                tareas[idTarea] = {
-                    ...fila,
-                    comentarios: []
-                };
-
-                switch (estadoTarea) {
-                    case 1:
-                    case 3:
-                        conteos[idUsuario].asignadas++;
-                        break;
-                    case 2:
-                        conteos[idUsuario].enProceso++;
-                        break;
-                    case 4:
-                        conteos[idUsuario].cerradas++;
-                        break;
+            // Obtiene todos los botones de la página
+            var botones = document.getElementsByTagName('button');
+            if (nombre) {
+                // Recorre todos los botones y los habilita
+                for (var i = 0; i < botones.length; i++) {
+                    botones[i].disabled = false;
+                }
+            } else {
+                // Recorre todos los botones y los deshabilita
+                for (var i = 0; i < botones.length; i++) {
+                    botones[i].disabled = true;
                 }
             }
 
-            if (comentario) {
-                tareas[idTarea].comentarios.push({
-                    texto: comentario,
-                    fecha: fechaComentario,
-                    autor: idUsuario
-                });
+        };
+
+        var usuarios = allUsers;
+        var tareas = alltask;
+
+
+        function cargaUsuarios() {
+            document.getElementById("addselectUsuario").options.length = 0; // reseteo el select
+            $('#addselectUsuario').append($('<option>', { value: '999', text: 'Seleccionar', selectedIndex: 0 }));
+            var jsonData = JSON.parse(JSON.stringify(usuarios))
+            for (var i = 0; i < jsonData.length; i++) {
+                var counter = jsonData[i];
+                $('#addselectUsuario').append($('<option>', {
+                    value: counter[0],
+                    text: counter[1]
+                }));
             }
-        }
-        for (let idUsuario in conteos) {
-            let card = createCard(idUsuario, conteos[idUsuario]);
-            if (idUsuario !== 'Sin-Asignar') {
-                $('#tarjetasUsuarios').append(card);
+        };
+
+        async function getDatos() {
+            generarTarjetas(tareas);
+        };
+
+        function generarTarjetas(datos) {
+            console.log(datos)
+            let conteos = {};
+            let tareas = {};
+
+            for (let fila of datos) {
+                let idUsuario = fila[8] || 'Sin-Asignar';
+                let estadoTarea = fila[6];
+                let idTarea = fila[0];
+                let comentario = fila[11];
+                let fechaComentario = fila[12];
+
+                if (!conteos[idUsuario]) {
+                    conteos[idUsuario] = {
+                        asignadas: 0,
+                        enProceso: 0,
+                        cerradas: 0
+                    };
+                }
+
+                if (!tareas[idTarea]) {
+                    tareas[idTarea] = {
+                        ...fila,
+                        comentarios: []
+                    };
+
+                    switch (estadoTarea) {
+                        case 1:
+                        case 3:
+                            conteos[idUsuario].asignadas++;
+                            break;
+                        case 2:
+                            conteos[idUsuario].enProceso++;
+                            break;
+                        case 4:
+                            conteos[idUsuario].cerradas++;
+                            break;
+                    }
+                }
+
+                if (comentario) {
+                    tareas[idTarea].comentarios.push({
+                        texto: comentario,
+                        fecha: fechaComentario,
+                        autor: idUsuario
+                    });
+                }
             }
-        }
-
-        for (let idTarea in tareas) {
-            let color;
-            if (tareas[idTarea][6] === 4) { color = 'text-bg-danger' }
-            else if (tareas[idTarea][6] === 3) { color = 'text-bg-warning' } else { color = 'text-bg-success' };
-
-
-            let task = createTask(tareas[idTarea], tareas[idTarea][8], tareas[idTarea].comentarios, color);
-            if (tareas[idTarea][6] === 4) {
-                $('#tareasUsuariosCerradas').append(task);
-            } else if (tareas[idTarea][6] === 0) {
-                $('#tareasSinAsignar').append(task);
-            } else {
-                $('#tareasUsuarios').append(task);
+            for (let idUsuario in conteos) {
+                let card = createCard(idUsuario, conteos[idUsuario]);
+                if (idUsuario !== 'Sin-Asignar') {
+                    $('#tarjetasUsuarios').append(card);
+                }
             }
+
+            for (let idTarea in tareas) {
+                let color;
+                if (tareas[idTarea][6] === 4) { color = 'text-bg-danger' }
+                else if (tareas[idTarea][6] === 3) { color = 'text-bg-warning' } else { color = 'text-bg-success' };
+
+                let task = createTask(tareas[idTarea], tareas[idTarea][8], tareas[idTarea].comentarios, color);
+                if (tareas[idTarea][6] === 4) {
+                    $('#tareasUsuariosCerradas').append(task);
+                } else if (tareas[idTarea][6] === 0) {
+                    $('#tareasSinAsignar').append(task);
+                } else {
+                    $('#tareasUsuarios').append(task);
+                }
+            }
+            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
         }
 
-        $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-    }
-
-
-    function createCard(idUsuario, tareas) {
-        let card = `<div class="card m-1 text-bg-light col-auto card-header-PT">
+        function createCard(idUsuario, tareas) {
+            let card = `<div class="card m-1 text-bg-light col-auto card-header-PT">
                         <div class="card-header text-center">${idUsuario}</div>
                         <div class="card-body">
-                            <b>Tareas:</b>
+                            <b>Estado de tareas:</b>
                             <p class="card-text-task">Asignadas: <span>${tareas.asignadas}</span></p>
                             <p class="card-text-task">En proceso: <span>${tareas.enProceso}</span></p>
                             <p class="card-text-task">Cerradas: <span>${tareas.cerradas}</span></p>
@@ -309,36 +314,36 @@
                             </div>
                         </div>
                     </div>`;
-        return card;
-    }
+            return card;
+        }
 
-    function createTask(tarea, usuario, comentarios, color) {
-        // Crear las opciones del select con el valor seleccionado a
-        let options = [
-            { value: '999', text: 'Seleccionar' },
-            { value: '0', text: 'Sin Asignar' },
-            { value: '1', text: 'Asignada' },
-            { value: '2', text: 'En Proceso' },
-            { value: '3', text: 'En Espera' },
-            { value: '4', text: 'Cerrado' }
-        ].map(option =>
-            `<option value="${option.value}" ${tarea[6] == option.value ? 'selected' : ''}>${option.text}</option>`
-        ).join('');
+        function createTask(tarea, usuario, comentarios, color) {
+            // Crear las opciones del select con el valor seleccionado a
+            let options = [
+                { value: '999', text: 'Seleccionar' },
+                { value: '0', text: 'Sin Asignar' },
+                { value: '1', text: 'Asignada' },
+                { value: '2', text: 'En Proceso' },
+                { value: '3', text: 'En Espera' },
+                { value: '4', text: 'Cerrado' }
+            ].map(option =>
+                `<option value="${option.value}" ${tarea[6] == option.value ? 'selected' : ''}>${option.text}</option>`
+            ).join('');
 
-        // Crear un elemento de lista para cada comentario
-        let listaComentarios = '';
-        if (comentarios) {
-            listaComentarios = comentarios.map(comentario =>
-                `<div class="list-group-item list-group-item-action" aria-current="true">
+            // Crear un elemento de lista para cada comentario
+            let listaComentarios = '';
+            if (comentarios) {
+                listaComentarios = comentarios.map(comentario =>
+                    `<div class="list-group-item list-group-item-action" aria-current="true">
                     <div class="d-flex w-100 justify-content-between">
                         <small class="text-body-secondary">${comentario.autor} - ${formatFecha(comentario.fecha)}</small>
                     </div>
                     <p class="mb-1">${comentario.texto}</p>
                 </div>`
-            ).join('');
-        }
+                ).join('');
+            }
 
-        let task = `<div class="card m-1 text-bg-light col-2 card-header-PT cardTask"  id="${tarea[0]}" data-usuario="${usuario || 'SinAsignar'}">
+            let task = `<div class="card m-1 text-bg-light col-2 card-header-PT cardTask"  id="${tarea[0]}" data-usuario="${usuario || 'SinAsignar'}">
             <div class="card-header text-center ${color}">${tarea[1]}</div>
             <div class="card-body col-12">
                 <form id="formTask_${tarea[0]}" action="">
@@ -354,16 +359,12 @@
                                     <select class="form-select form-select-sm col-12" id="udpSelectUsuario_${tarea[0]}"
                                         aria-label="Small select example">
                                         <option value="999" selectedindex="0">Seleccionar</option>
-                                        <option value="2">GuillermoR</option>
-                                        <option value="3">KarinaG</option>
-                                        <option value="5">MariaJoseP</option>
-                                        <option value="6">MelanyA</option>
                                         <option value="1">RomanA</option>
-                                        <option value="4">RoyA</option>
-                                        <option value="7">TomasV</option>
-                                    </select>`
-                : ''}
-                    <chi-label for="selectStatus" ata-placement="top" data-toggle="tooltip" title="" data-original-title="Seleccione el estado">
+                                        <option value="2">FlorenciaR</option>
+                                        <option value="3">MatiasA</option>
+                                        <option value="4">ConradoG</option>
+                                     </select>`
+                    : ''}<chi-label for="selectStatus" ata-placement="top" data-toggle="tooltip" title="" data-original-title="Seleccione el estado">
                         Estado</chi-label>
                         <select class="form-select form-select-sm col-12" id="selectStatus_${tarea[0]}" aria-label="Small select example">
                             ${options}
@@ -391,206 +392,151 @@
                 </form>
             </div>
         </div>`;
-        return task;
-    }
-
-    function viewTask(idUsuario) {
-        let tareas = $(`#tareasUsuarios .card[data-usuario="${idUsuario}"]`);
-        let isVisible = tareas.is(':visible');
-
-        $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-
-        if (isVisible) {
-            tareas.hide();
-        } else {
-            tareas.show();
+            return task;
         }
-    }
-    function viewTaskClose(idUsuario) {
-        let tareas = $(`#tareasUsuariosCerradas .card[data-usuario="${idUsuario}"]`);
-        let isVisible = tareas.is(':visible');
 
-        $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
+        function Addtask() {
+            // Resetea el formulario dentro del modal
+            $('#ModalForm')[0].reset();
+            $('addselectUsuario').prop('selectedIndex', 0);
+            $('addselectStatus').prop('selectedIndex', 0);
+            $("#modalTotal").modal("toggle");
+        };
 
-        if (isVisible) {
-            tareas.hide();
-        } else {
-            tareas.show();
-        }
-        /*if (document.body.scrollHeight > window.innerHeight) {
-            document.body.style.transform = "scale(0.8)";
-            //document.body.style.transformOrigin = "top left";
-        }*/
-    }
+        function closeModal() {
+            $("#modalTotal").modal("toggle");
+        };
 
-    function viewTaskSinAsignar(idUsuario) {
-        let tareas = $(`#tareasSinAsignar .card[data-usuario="${idUsuario}"]`);
-        let isVisible = tareas.is(':visible');
+        function addNewTask() {
+            let addNameTask = $("#addNameTask").val();
+            let addtextDescripcion = $("#addtextDescripcion").val();
+            let select1 = document.getElementById("addselectUsuario");
+            let addselectUsuario = select1.options[select1.selectedIndex].value;
+            let addselectUsuarioName = select1.options[select1.selectedIndex].text;
+            let select2 = document.getElementById("addselectStatus");
+            let addselectStatus = Number(select2.options[select2.selectedIndex].value);
+            let datepicker1 = $("#datepicker1").val();
+            let datepicker2 = $("#datepicker2").val();
 
-        $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
+            // obtengo el id y sumo uno para agregar la proxima tarea
+            var maxId = Math.max(...tareas.map(task => task[0]));
+            var nextId = maxId + 1;
+            var fechaCreacion = formatFecha(new Date());
+            if (addselectUsuario == '999') {
+                alert('Debe seleccionar un usuario!');
+                return;
+            };
+            if (addselectStatus == 'Seleccionar') {
+                alert('Debe seleccionar un estado!');
+                return;
+            };
 
-        if (isVisible) {
-            tareas.hide();
-        } else {
-            tareas.show();
-        }
-        /*if (document.body.scrollHeight > window.innerHeight) {
-            document.body.style.transform = "scale(0.8)";
-            //document.body.style.transformOrigin = "top left";
-        }*/
-    }
+            //Agrego la tarea 
+            tareas.push([nextId, addNameTask, addtextDescripcion, fechaCreacion, null, null, addselectStatus, addselectUsuario, addselectUsuarioName, null, null, null, null],)
 
+            closeModal();
+            // Vaciar los contenedores de las tarjetas
+            $('#tarjetasUsuarios').empty();
+            $('#tareasUsuarios').empty();
+            $('#tareasUsuariosCerradas').empty();
+            $('#tareasSinAsignar').empty();
+            generarTarjetas(tareas);
+        };
 
-    function Addtask() {
-        // Resetea el formulario dentro del modal
-        $('#ModalForm')[0].reset();
-        $('addselectUsuario').prop('selectedIndex', 0);
-        $('addselectStatus').prop('selectedIndex', 0);
-        $("#modalTotal").modal("toggle");
-    };
+        function saveTask(id) {
+            // Índices de los campos que quieres modificar
+            let estadoIndex = 6; // El índice del campo ESTADO en tus datos
+            let idComentarioIndex = 9; // El índice del campo ID_COMENTARIO en tus datos
+            let tareaIndex = 10; // El índice del campo TAREA en tus datos
+            let comentarioIndex = 11; // El índice del campo COMENTARIO en tus datos
+            let fechaComentarioIndex = 12; // El índice del campo FECHA_COMENTARIO en tus datos
 
-    function closeModal() {
-        $("#modalTotal").modal("toggle");
-    };
+            // nuevos valores
+            let nuevoEstado = Number($(`#selectStatus_${id} option:selected`).val());
+            let nuevoComentario = $(`#textObservaciones_${id}`).val();
+            let idTarea = Number($(`#inputTaskId_${id}`).val());
 
-    function addNewTask() {
-        let addNameTask = $("#addNameTask").val();
-        let addtextDescripcion = $("#addtextDescripcion").val();
-        let select1 = document.getElementById("addselectUsuario");
-        let addselectUsuario = select1.options[select1.selectedIndex].value;
-        let select2 = document.getElementById("addselectStatus");
-        let addselectStatus = select2.options[select2.selectedIndex].value;
-        let datepicker1 = $("#datepicker1").val();
-        let datepicker2 = $("#datepicker2").val();
+            // obtengo el id y sumo uno para agregar la proxima tarea
+            let maxId = Math.max(...tareas.map(task => task[idComentarioIndex]));
+            let idcomentarioGenerado = maxId + 1;
 
-        $.ajax({
-            url: '<%= process.env.SRV_PH %>/task/addNewTask',
-            type: 'GET',
-            data: {
-                NameTask: addNameTask,
-                textDescripcion: addtextDescripcion,
-                idUsuario: addselectUsuario,
-                idStatus: addselectStatus,
-                fechaInicio: datepicker1,
-                fechaFin: datepicker2
-            },
-            beforeSend: function () {
-                document.body.style.cursor = 'wait'; // cambia el cursor a espera
-            },
-            async: true,
-            error: function (xhr, status, error) {
-                if (xhr.status == 408) {
-                    $.confirm({
-                        title: 'Alert!',
-                        content: 'Your session has expired. Please relogin',
-                        buttons: {
-                            Login: function () {
-                                window.open('<%= process.env.SRV_PH %>/login', '_self');
-                            },
-                        }
-                    });
-                } else {
-                    $.alert({ title: 'Alert!', content: `Error en la busqueda - ${error}` });
+            // Modifica los campos
+            tareas.forEach(task => {
+                if (task[0] == idTarea) { // Solo modifica la tarea con el ID especificado
+                    task[estadoIndex] = nuevoEstado;
+                    task[idComentarioIndex] = idcomentarioGenerado;
+                    task[tareaIndex] = idTarea;
+                    task[comentarioIndex] = nuevoComentario;
+                    task[fechaComentarioIndex] = new Date().toISOString(); // Fecha actual
                 }
-            },
-            success: function (respuesta) {
-                if (respuesta) {
-                    null;
-                    $.alert({ title: 'Mensaje!', content: `Se creo la tarea  Id: ${respuesta[0].idTarea} Nombre: ${respuesta[0].NameTask}` });
-                } else {
-                    $.alert({ title: 'Error!', content: `No se pudo crear tarea` });
-                }
-            },
-            complete: function () {
-                closeModal();
-                // Vaciar los contenedores de las tarjetas
-                $('#tarjetasUsuarios').empty();
-                $('#tareasUsuarios').empty();
-                $('#tareasUsuariosCerradas').empty();
-                $('#tareasSinAsignar').empty();
-                getDatos();
-                document.body.style.cursor = 'default'; // cambia el cursor a espera
+            });
+
+            // Vaciar los contenedores de las tarjetas
+            $('#tarjetasUsuarios').empty();
+            $('#tareasUsuarios').empty();
+            $('#tareasUsuariosCerradas').empty();
+            $('#tareasSinAsignar').empty();
+            generarTarjetas(tareas);
+        };
+
+
+        function viewTask(idUsuario) {
+            let tareas = $(`#tareasUsuarios .card[data-usuario="${idUsuario}"]`);
+            let isVisible = tareas.is(':visible');
+
+            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
+
+            if (isVisible) {
+                tareas.hide();
+            } else {
+                tareas.show();
             }
-        });
-    };
+        }
+        function viewTaskClose(idUsuario) {
+            let tareas = $(`#tareasUsuariosCerradas .card[data-usuario="${idUsuario}"]`);
+            let isVisible = tareas.is(':visible');
 
-    function saveTask(id) {
-        let inputTaskId = $(`#inputTaskId_${id}`).val();
-        let inputUserId = $(`#inputUserId_${id}`).val();
-        let textObservaciones = $(`#textObservaciones_${id}`).val();
-        let selectStatus_1 = $(`#selectStatus_${id} option:selected`).val();
-        let udpSelectUsuario = $(`#udpSelectUsuario_${id} option:selected`).val();
+            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
 
-        //console.log(id)
-        //console.log(udpSelectUsuario)
-
-        $.ajax({
-            url: '<%= process.env.SRV_PH %>/task/saveTask',
-            type: 'GET',
-            data: {
-                idTask: inputTaskId,
-                idUser: inputUserId,
-                observaciones: textObservaciones,
-                status: selectStatus_1,
-                udpUsuario: udpSelectUsuario
-            },
-            beforeSend: function () {
-                document.body.style.cursor = 'wait'; // cambia el cursor a espera
-            },
-            async: true,
-            error: function (xhr, status, error) {
-                if (xhr.status == 408) {
-                    $.confirm({
-                        title: 'Alert!',
-                        content: 'Your session has expired. Please relogin',
-                        buttons: {
-                            Login: function () {
-                                window.open('<%= process.env.SRV_PH %>/login', '_self');
-                            },
-                        }
-                    });
-                } else {
-                    $.alert({ title: 'Alert!', content: `Error en la busqueda - ${error}` });
-                }
-            },
-            success: function (respuesta) {
-                if (respuesta) {
-                    null;
-                    //$.alert({ title: 'Mensaje!', content: `Se actualizo la tarea ${respuesta}` });
-                } else {
-                    $.alert({ title: 'Error!', content: `No se actualizar la tarea` });
-                }
-            },
-            complete: function () {
-                // Vaciar los contenedores de las tarjetas
-                $('#tarjetasUsuarios').empty();
-                $('#tareasUsuarios').empty();
-                $('#tareasUsuariosCerradas').empty();
-                $('#tareasSinAsignar').empty();
-                getDatos();
-                document.body.style.cursor = 'default'; // cambia el cursor a espera
+            if (isVisible) {
+                tareas.hide();
+            } else {
+                tareas.show();
             }
-        });
-    };
+        }
 
-    function formatFecha(fecha) {
-        var fecha = new Date(fecha);
-        var dia = fecha.getDate();
-        var mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
-        var año = fecha.getFullYear();
-        var hora = fecha.getHours();
-        var minuto = fecha.getMinutes();
+        function viewTaskSinAsignar(idUsuario) {
+            let tareas = $(`#tareasSinAsignar .card[data-usuario="${idUsuario}"]`);
+            let isVisible = tareas.is(':visible');
 
-        // Asegurarse de que el día, el mes, la hora y el minuto sean de dos dígitos
-        if (dia < 10) dia = '0' + dia;
-        if (mes < 10) mes = '0' + mes;
-        if (hora < 10) hora = '0' + hora;
-        if (minuto < 10) minuto = '0' + minuto;
+            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
 
-        var fechaFormateada = dia + '/' + mes + '/' + año + ' ' + hora + ':' + minuto;
-        return fechaFormateada
-    }
-</script>
+            if (isVisible) {
+                tareas.hide();
+            } else {
+                tareas.show();
+            }
+        }
 
+        function formatFecha(fecha) {
+            var fecha = new Date(fecha);
+            var dia = fecha.getDate();
+            var mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
+            var año = fecha.getFullYear();
+            var hora = fecha.getHours();
+            var minuto = fecha.getMinutes();
+
+            if (dia < 10) dia = '0' + dia;
+            if (mes < 10) mes = '0' + mes;
+            if (hora < 10) hora = '0' + hora;
+            if (minuto < 10) minuto = '0' + minuto;
+
+            var fechaFormateada = dia + '/' + mes + '/' + año + ' ' + hora + ':' + minuto;
+            return fechaFormateada
+        }
+    </script>
+
+
+</body>
 
 </html>
