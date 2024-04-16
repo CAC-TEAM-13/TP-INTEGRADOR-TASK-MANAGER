@@ -12,7 +12,9 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <!-- Estilos -->
+
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/contacto.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         data-mutate-approach="sync"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
     <title>Task Manager</title>
 </head>
 
@@ -49,7 +52,19 @@
     </header>
     <main>
 
-        <h1>Crear contenido para contacto, aca podemos poner la informacion de codo a codo y el curso, etc....</h1>
+        <div class="container-2">
+            <h2>Formulario de Contacto</h2>
+            <br>
+            <form action="enviar.php" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" ></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
 
     </main>
     <footer>
