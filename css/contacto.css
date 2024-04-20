@@ -33,3 +33,73 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #45a049;
 } 
+
+
+
+.logo-cac-contacto {
+
+    
+    align-self: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.title-intro-cac {    color: black;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    font-size: xx-large;
+    font-weight: bold;
+
+}
+
+.intro-cursos {
+    color: black;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    margin: 2%;
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
+.boton-cursos-CAC {
+
+    text-align: center; 
+    align-self: center; 
+    font-family: Arial, sans-serif;    
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #335f8b;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    width: 30%;
+    height: 30%;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 30px;
+       
+    
+}
+
+.datos-intro-cac {
+    
+    display: flex;
+    flex-direction: column; 
+   
+}
+
+.info-CAC{
+    display: grid;
+    justify-content: center;
+    
+    align-items: center;  
+    margin: 5%;
+    grid-template-columns: 25% 65% ;
+}
