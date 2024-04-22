@@ -10,7 +10,7 @@
     }
 
     .container-2 h2 {
-        font-size: 25px;
+        font-size: 0.8rem;
     }
 
 }
@@ -49,7 +49,7 @@
     }
 
     .container-2 h2 {
-        font-size: 25px;
+        font-size: 1.2rem;
     }
 
 }
@@ -88,7 +88,7 @@
     }
 
     .container-2 h2 {
-        font-size: 55px;
+        font-size: 1.6rem;
     }
 
 }
@@ -97,10 +97,12 @@
 
 
     .container-2 h2 {
-        font-size: 75px;
+        font-size: 2rem;
     }
 
 }
+
+
 * {
     margin: 0;
     padding: 0;

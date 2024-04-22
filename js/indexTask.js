@@ -204,6 +204,7 @@ function createTask(tarea, usuario, comentarios, color) {
                                         <option value="2">FlorenciaR</option>
                                         <option value="3">MatiasA</option>
                                         <option value="4">ConradoG</option>
+                                        <option value="5">ConstanzaR</option>
                                      </select>`
                     : ''}<div class="label-comentario text-left" for="selectStatus">Estado</div>
                         <select class="form-select form-select-sm col-12" id="selectStatus_${tarea[0]}">
