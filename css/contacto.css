@@ -36,12 +36,13 @@ input[type="submit"]:hover {
 
 
 
-.logo-cac-contacto {
 
-    
-    align-self: center;
+.logo-cac-contacto {
     max-width: 100%;
     max-height: 100%;
+    align-self: center; 
+    width: 25%; /* Hacer que la imagen ocupe el 25% del contenedor en pantallas grandes */
+    transition: max-width 0.5s ease, width 0.5s ease, align-self 0.5s ease; /* Transición suave del tamaño de la imagen */
 }
 
 .title-intro-cac {    color: black;
@@ -57,7 +58,6 @@ input[type="submit"]:hover {
 
 .intro-cursos {
     color: black;
-    text-align: center;
     padding: 0;
     text-decoration: none;
     font-family: Arial, sans-serif;
@@ -68,38 +68,64 @@ input[type="submit"]:hover {
 }
 
 .boton-cursos-CAC {
-
-    text-align: center; 
-    align-self: center; 
-    font-family: Arial, sans-serif;    
+    text-align: center;
+    align-self: center;
+    font-family: Arial, sans-serif;
     border-radius: 8px;
     cursor: pointer;
     color: white;
     background-color: #335f8b;
-    font-size: 20px;
+    font-size: 16px; /* Tamaño de la fuente ajustado para dispositivos móviles */
     font-weight: bold;
     text-decoration: none;
-    width: 30%;
-    height: 30%;
-    min-width: 100px;
-    max-width: 200px;
-    max-height: 30px;
-       
-    
+    width: 100%; /* Ancho completo del contenedor */
+    max-width: 200px; /* Máximo ancho del botón para evitar que se extienda demasiado */
+    padding: 10px; /* Añadido padding para mejorar la apariencia en dispositivos móviles */
+    margin: 0 auto; /* Centrar el botón en el contenedor */
+    transition: color 0.3s ease; /* Transición suave del color del texto */
+}
+
+.boton-cursos-CAC:hover {
+    color: violet; /* Cambio de color del texto al pasar el mouse */
 }
 
 .datos-intro-cac {
-    
     display: flex;
-    flex-direction: column; 
-   
+    flex-direction: column;
+    align-items: center; /* Centrar los elementos horizontalmente */
+    margin: 3%;
 }
 
-.info-CAC{
-    display: grid;
+.info-CAC {
+    display: flex;
     justify-content: center;
-    
-    align-items: center;  
-    margin: 5%;
-    grid-template-columns: 25% 65% ;
+    align-items: center;
+    text-align: center;
+    margin: 2%;
+    grid-template-columns: 25% 65%;
+    flex-direction: row; /* Mantener la dirección del flexbox en fila por defecto */
+}
+
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .info-CAC {
+
+        display:  flex;
+        flex-direction: column; /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center; /* Centrar la imagen verticalmente en pantallas pequeñas */
+        max-width: 70%; /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        order: -1; /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
+    }
+
+    .datos-intro-cac {
+        align-items: center; /* Centrar los elementos horizontalmente */
+        text-align: center;
+        margin: 3%;
+    }
+
 }
