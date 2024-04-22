@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font-awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        data-mutate-approach="sync"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Task Manager</title>
+</head>
+
+<body onload="mostrarNombre()">
+    <header>
+        <section>
+            <div>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="./imagenes/descarga.png" alt="Login" width="90" height="55"
+                                class="img-responsive">
+                            <span class="titlePage">Task Manager - TP</span> </a>
+                        <div class="titlePage" id="menu">Hola <span id="nombre"></span></div>
+                        <div class=" navbar-toggler-right">
+                            <div class="navbar-nav me-2">
+                                <span><a class="nav-link" href="./index.html">Inicio</a></span>
+                                <span><a class="nav-link" href="./help.html">Ayuda</a></span>
+                                <span id="sesionEstado"></span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <main>
+
+        <h1>Crear contenido para ayuda, aca la idea la tenia florencia, era algo como pegar capturas y explicar al app.
+        </h1>
+
+    </main>
+    <footer>
+        <section class="content">
+            <nav class="navbar bottom">
+                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
+                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
+                <a class="navbar-brand" href="#">Términos y Condiciones</a>
+            </nav>
+        </section>
+    </footer>
+    <!-- Datos de Sesion -->
+    <script src="./js/sesiones.js"></script>
+    <!-- Datos -->
+    <script src="./js/usuarios.js"></script>
+    <script>
+        window.onload = function () {
+            actualizarEstadoSesion();
+        };
+    </script>
+</body>
+
+</html>
