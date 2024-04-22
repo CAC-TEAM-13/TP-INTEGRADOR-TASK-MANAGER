@@ -1,0 +1,192 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-2 {
+    width: 80%;
+    margin: 20px auto;
+}
+
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label,
+input,
+textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+
+
+.logo-cac-contacto {
+    max-width: 100%;
+    max-height: 100%;
+    align-self: center;
+    width: 25%;
+    /* Hacer que la imagen ocupe el 25% del contenedor en pantallas grandes */
+    transition: max-width 0.5s ease, width 0.5s ease, align-self 0.5s ease;
+    /* Transición suave del tamaño de la imagen */
+}
+
+.title-intro-cac {
+    color: black;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    font-size: xx-large;
+    font-weight: bold;
+
+}
+
+.intro-cursos {
+    color: black;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    margin: 2%;
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
+.boton-cursos-CAC {
+    text-align: center;
+    align-self: center;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #335f8b;
+    font-size: 16px;
+    /* Tamaño de la fuente ajustado para dispositivos móviles */
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+    /* Ancho completo del contenedor */
+    max-width: 200px;
+    /* Máximo ancho del botón para evitar que se extienda demasiado */
+    padding: 10px;
+    /* Añadido padding para mejorar la apariencia en dispositivos móviles */
+    margin: 0 auto;
+    /* Centrar el botón en el contenedor */
+    transition: color 0.3s ease;
+    /* Transición suave del color del texto */
+}
+
+.boton-cursos-CAC:hover {
+    color: violet;
+    /* Cambio de color del texto al pasar el mouse */
+}
+
+.datos-intro-cac {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrar los elementos horizontalmente */
+    margin: 3%;
+}
+
+.info-CAC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 2%;
+    grid-template-columns: 25% 65%;
+    flex-direction: row;
+    /* Mantener la dirección del flexbox en fila por defecto */
+}
+
+.Text-md-CAC {
+    font-size: 15px;
+    --text-align: justify;
+    --padding-bottom: 5%;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .info-CAC {
+
+        display: flex;
+        flex-direction: column;
+        /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+    }
+
+    .container-2 h2 {
+        font-size: 120%;
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center;
+        /* Centrar la imagen verticalmente en pantallas pequeñas */
+        max-width: 70%;
+        /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        order: -1;
+        /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
+    }
+
+    .datos-intro-cac {
+        align-items: center;
+        /* Centrar los elementos horizontalmente */
+        text-align: center;
+        margin: 3%;
+    }
+
+}
+
+/* Media query para pantallas pequeñas */
+/* @media (max-width: 768px) {
+    .info-CAC {
+
+        display:  flex;
+        flex-direction: column;
+    }
+    .container-2 h2{
+        font-size: 80%;
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center;
+        max-width: 70%;
+        order: -1; 
+    }
+
+    .datos-intro-cac {
+        align-items: center; 
+        text-align: center;
+        margin: 3%;
+    }
+
+} */

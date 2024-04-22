@@ -1,3 +1,112 @@
+@media (max-width: 359px) {
+
+    /*General*/
+    .titlePage {
+        display: none;
+    }
+
+    .nav-link a{
+        display: none;
+    }
+
+    .container-2 h2 {
+        font-size: 25px;
+    }
+
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+    .info-CAC {
+        display: flex;
+        flex-direction: column;
+        /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center;
+        /* Centrar la imagen verticalmente en pantallas pequeñas */
+        max-width: 70%;
+        /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        order: -1;
+        /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
+    }
+
+    .datos-intro-cac {
+        align-items: center;
+        /* Centrar los elementos horizontalmente */
+        text-align: center;
+        margin: 3%;
+    }
+
+    /*General*/
+    .titlePage {
+        font-size: 10px;
+    }
+
+    .nav-link a{
+        font-size: 30px;
+    }
+
+    .container-2 h2 {
+        font-size: 25px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .info-CAC {
+        display: flex;
+        flex-direction: column;
+        /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center;
+        /* Centrar la imagen verticalmente en pantallas pequeñas */
+        max-width: 70%;
+        /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        order: -1;
+        /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
+    }
+
+    .datos-intro-cac {
+        align-items: center;
+        /* Centrar los elementos horizontalmente */
+        text-align: center;
+        margin: 3%;
+    }
+    
+    /*General*/
+    .titlePage {
+        font-size: 10px;
+    }
+
+    .nav-link a{
+        font-size: 50px;
+    }
+
+    .container-2 h2 {
+        font-size: 55px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+
+
+    .container-2 h2 {
+        font-size: 75px;
+    }
+
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --bg-color: #e9f2f9;
     --primary-color: #1b325f;
@@ -39,33 +148,6 @@ html {
     width: 100%;
 }
 
-footer {
-    --display: flex;
-    align-items: center;
-    margin-top: auto;
-    position: static;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-}
-
-
-/* Media query para pantallas medianas (tabletas, etc.) */
-@media (min-width: 768px) {
-    .card {
-        width: 80%;
-        /* La tarjeta ocupará el 50% del ancho de la pantalla en tabletas */
-    }
-}
-
-/* Media query para pantallas grandes (ordenadores de escritorio, etc.) */
-@media (min-width: 1024px) {
-    .card {
-        width: 30%;
-        /* La tarjeta ocupará el 20% del ancho de la pantalla en ordenadores de escritorio */
-    }
-}
-
 .buttonform {
     height: 40px;
     text-align: center;
@@ -80,18 +162,18 @@ footer {
     background-color: var(--primary-color) !important;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: var(--third-color) !important;
     border: 0px !important;
     margin: 5px;
 }
 
-.btn-secondary{
+.btn-secondary {
     background-color: var(--third-bis-color) !important;
     border: 0px !important;
 }
 
-.card{
+.card {
     box-sizing: border-box !important;
     padding: 0px !important;
 }
@@ -212,11 +294,11 @@ footer {
     font-size: 16px;
 }
 
-.navbar-brand:hover{
+.navbar-brand:hover {
     color: var(--third-bis-color);
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: var(--third-bis-color)
 }
 
@@ -248,7 +330,6 @@ footer {
 .card {
     margin: 1em;
     width: 100%;
-    /* Cambiamos esto a 80% para móviles */
     background-color: lightgray;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -268,8 +349,12 @@ footer {
 }
 
 .card:hover {
-    transform: scale(1.03);
+    transform: scale(1.02) translateZ(0);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+
+    /* Opciones agregadas */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .cardTask {
@@ -278,14 +363,20 @@ footer {
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
     cursor: pointer;
     transition: 0.5s;
+    max-height: 470px;
+    overflow-y: auto;
 }
 
 .cardTask:hover {
     --transform: translate(-0.1%, -0.1%);
     --animation: translate 2s linear;
     opacity: 1;
-    transform: scale(1.02);
+    transform: scale(1.02) translateZ(0);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+
+    /* Opciones agregadas */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .card-header {
@@ -294,9 +385,7 @@ footer {
     font-weight: bold;
 }
 
-.button-top{
-    padding: 15px;
-}
+
 
 /* Estilo para el encabezado de la tarjeta 
         .card-header1 {
@@ -313,15 +402,6 @@ footer {
     /* Esto quita el espacio debajo de cada línea */
 }
 
-.card-header-PT {
-    text-align: center;
-    color: black;
-    --background-color: red;
-    padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: initial;
-}
 
 .border-card {
     border-color: cornflowerblue;
@@ -380,4 +460,191 @@ label {
 
 #textVerde {
     color: green;
+}
+
+
+/* Suplanta Boostrap*/
+.boton-top {
+    margin: 5px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.boton {
+    background-color:var(--third-color);
+    border: 1px var(--third-color);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    --font-weight : bold ;
+}
+
+.boton:hover{
+    color: white !important;
+    border: 1px solid var(--secondary-color);
+    transform: scale(1.00);
+}
+
+.boton-footer {
+    background-color:var(--primary-color);
+    border: 1px var(--primary-color);
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.boton-footer:hover{
+    border: 1px solid var(--secondary-color);
+    transform: scale(1.00);
+}
+
+.contenedorTarjetaUsuario {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.tarjetaUsuario {
+    background-color: whitesmoke;
+    height: auto;
+    width: 200px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5%;
+
+}
+
+.tarjeta-header {
+    background-color: rgb(175, 203, 245);
+    height: 40px;
+    width: 100%;
+    font-size: medium;
+    text-align: center;
+    font-weight: bold;
+    text-justify: distribute;
+    border-radius: 5% 0%;
+    align-content: center;
+}
+
+/* Estilo para el cuerpo de la tarjeta */
+.tarjeta-body {
+    padding: 15% 5%;
+    text-align: start;
+    align-content: center;
+}
+
+.tarjeta-footer {
+    background-color:lightgray;
+    height: 40px;
+    width: 100%;
+    font-size: medium;
+    text-align: center;
+    font-weight: bold;
+    text-justify: distribute;
+    border-radius: 5% 0%;
+    align-content: center;
+}
+.card-text-task {
+    margin-bottom: 0;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.card-header-PT {
+    text-align: center;
+    color: black;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: initial;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    position: static;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: var(--primary-color) !important;
+}
+
+.footer a {
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color) !important;
+}
+
+.lista-grupo{
+    background-color: whitesmoke;
+    height: auto;
+    width: 200px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5%;
+}
+
+.dato-comentario {
+    display: contents;
+    margin: auto;
+    color: grey;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.texto-comentario {
+    margin: auto;
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.label-comentario{
+    margin: auto;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.flex-login-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-login-center a {
+    --color: white;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-login-center  a:hover {
+    text-decoration: underline;
+    color: black;
 }

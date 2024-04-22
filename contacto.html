@@ -12,7 +12,9 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <!-- Estilos -->
+
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contacto.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         data-mutate-approach="sync"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <title>Task Manager</title>
 </head>
 
@@ -48,18 +51,49 @@
         </section>
     </header>
     <main>
+        <div class="container-2">
+            <h2>Formulario de Contacto</h2>
+            <br>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        <div>
+            <div class="info-CAC">
+                <img class="logo-cac-contacto" src="imagenes/logo CAC.png" alt>
+                <div class="datos-intro-cac">
+                    <h2 class="title-intro-cac">¿Qué es codo a codo?</h2>
+                    <div class="intro-cursos">
+                        <p class="Text-md-CAC"> Codo a Codo 4.0 es un programa de enseñanza en Programación, destinado a
+                            personas jóvenes y
+                            adultas,
+                            que cuenten con título secundario. Tiene como objetivo brindar herramientas que faciliten la
+                            inserción
+                            laboral en el sector IT, necesarias para mejorar la empleabilidad de las personas.
+                            Modalidad: 2 clases virtuales sincrónicas por semana de una duración de 90 minutos cada una.
+                        </p class="Text-md-CAC">
+                        <p class="Text-md-CAC">Curso autoasistido de habilidades blandas.</p>
+                        <p class="Text-md-CAC"> Duración: 20 semanas</p>
+                    </div>
 
-        <h1>Crear contenido para contacto, aca podemos poner la informacion de codo a codo y el curso, etc....</h1>
+                    <a href="https://inscripcionesagencia.bue.edu.ar/codoacodo/courses" class="boton-cursos-CAC">VER
+                        CURSOS</a>
+                </div>
+
+            </div>
+        </div>
 
     </main>
-    <footer>
-        <section class="content">
-            <nav class="navbar bottom">
-                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
-                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
-                <a class="navbar-brand" href="#">Términos y Condiciones</a>
-            </nav>
-        </section>
+    <footer class="footer">
+        <a href="./estudiantes.html">Estudiantes</a>
+        <a href="./contacto.html">Contáctanos</a>
+        <a href="#">Términos y Condiciones</a>
     </footer>
     <!-- Datos de Sesion -->
     <script src="./js/sesiones.js"></script>

@@ -19,6 +19,7 @@ function guardarNombre() {
 
 function mostrarNombre() {
     var nombre = localStorage.getItem('nombre');
+    if (!nombre) {nombre = 'Anonimo, debe loguearse para poder operar'}
     document.getElementById('nombre').textContent = nombre;
 };
 
@@ -42,3 +43,37 @@ function logout() {
     // Redirige al usuario a la página de login
     window.location.href = "login.html";
 };
+
+/*REgistro de nuevos usuarios*/
+
+
+// Función para registrar un nuevo usuario
+function registerUser(username) {
+    // Guardar los usuarios en localStorage
+    localStorage.setItem('users', JSON.stringify(usuarios1));
+
+    // Recuperar los usuarios de localStorage
+    var usuarios = JSON.parse(localStorage.getItem('users'));
+    // Agregar un nuevo usuario
+    //usuarios.push([5, 'NuevoUsuario']);
+    registerUser('NuevoUsuario1');
+    // Guardar los usuarios actualizados en localStorage
+    localStorage.setItem('users', JSON.stringify(usuarios));
+
+    // Recuperar los usuarios de localStorage
+    var storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    // Encuentra el ID más alto entre los usuarios existentes
+    var maxId = Math.max(...storedUsers.map(user => user[0]), 0);
+
+    // Crea un nuevo usuario con un ID que es uno más que el ID más alto
+    var newUser = [maxId + 1, username];
+
+    // Agrega el nuevo usuario a la lista de usuarios
+    storedUsers.push(newUser);
+
+    // Guarda los usuarios actualizados en localStorage
+    localStorage.setItem('users', JSON.stringify(storedUsers));
+}
+
+// Uso de la función
+//registerUser('NuevoUsuario');

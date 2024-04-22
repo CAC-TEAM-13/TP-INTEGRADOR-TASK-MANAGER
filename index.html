@@ -53,12 +53,12 @@
         </section>
     </header>
     <main>
-        <section class="row col-12 justify-content-center align-self-center">
+        <section>
 
-            <div class="button-top">
+            <div class="boton-top">
 
-                <button type="button" id="btnAddTask" class="btn btn-primary -md  " onclick="Addtask();"><i
-                        class="icon-square-plus-outline"></i> &nbsp; Crear Tareas</button>
+                <button type="button" id="btnAddTask" class="boton" onclick="Addtask();"><i
+                        class="icon-square-plus-outline"></i>Crear Tareas</button>
 
                 <!--<button type="button" id="btnLoadBra" class="btn btn-secondary -md "
                     onclick=" viewTaskSinAsignar('SinAsignar');"><i class="icon-visible"></i> &nbsp;
@@ -68,22 +68,24 @@
         </section>
 
         <!-- tarjetas de usuario -->
-        <section class=" content container-fluid col-12">
+        <section>
+            <!--<div class="contenedorTarjetaUsuario" id="tarjetasUsuarios">-->
             <div class="row col-12 justify-content-center align-self-center" id="tarjetasUsuarios">
             </div>
         </section>
         <!-- tarjetas de tareas de usuario -->
-        <section class=" content container-fluid col-12">
+        <section>
+            <!--<div class="contenedorTarjetaUsuario" id="tareasUsuarios">-->
             <div class="row col-12 justify-content-center align-self-center" id="tareasUsuarios">
             </div>
         </section>
         <!-- tarjetas de tareas de usuario Cerradas -->
-        <section class=" content container-fluid col-12">
+        <section>
             <div class="row col-12 justify-content-center align-self-center" id="tareasUsuariosCerradas">
             </div>
         </section>
         <!-- tarjetas de tareas sin asignar -->
-        <section class=" content container-fluid col-12">
+        <section>
             <div class="row col-12 justify-content-center align-self-center" id="tareasSinAsignar">
             </div>
         </section>
@@ -99,7 +101,7 @@
                                 aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
-                        <form id="ModalForm" action="">
+                        <form id="ModalForm">
                             <div class="cardModal  text-bg-light card-header-PT">
                                 <div class="card-body col-12">
                                     <chi-label for="addNameTask" ata-placement="top" data-toggle="tooltip" title=""
@@ -124,7 +126,7 @@
                                         Estado</chi-label>
                                     <select class="form-select form-select-sm col-12" id="addselectStatus"
                                         aria-label="Small select example">
-                                        <option selected values="999">Seleccionar</option>
+                                        <option selected value="999">Seleccionar</option>
                                         <option value="0">Sin Asignar</option>
                                         <option value="1">Asignada</option>
                                         <option value="2">En Proceso</option>
@@ -153,14 +155,10 @@
         </div>
     </main>
 
-    <footer>
-        <section class="content">
-            <nav class="navbar bottom">
-                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
-                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
-                <a class="navbar-brand" href="#">Términos y Condiciones</a>
-            </nav>
-        </section>
+    <footer class="footer">
+        <a href="./estudiantes.html">Estudiantes</a>
+        <a href="./contacto.html">Contáctanos</a>
+        <a href="#">Términos y Condiciones</a>
     </footer>
 
     <!-- Datos de Sesion -->
@@ -170,373 +168,17 @@
     <script src="./js/tareas.js"></script>
     <script src="./js/usuarios.js"></script>
 
-    <script>
+    <!-- Funciones de Index-->
+    <script src="./js/indexTask.js"></script>
 
+    <script>
         $(window).on('load', function () {
             actualizarEstadoSesion();
             cargaUsuarios();
             getDatos();
             deshabilitarBotones();
         });
-
-        // si el usuario no esta loguado no puede hacer nada en la pagina
-        function deshabilitarBotones() {
-            //Obtengo el nombre de usuario
-            var nombre = localStorage.getItem('nombre');
-
-            // Obtiene todos los botones de la página
-            var botones = document.getElementsByTagName('button');
-            if (nombre) {
-                // Recorre todos los botones y los habilita
-                for (var i = 0; i < botones.length; i++) {
-                    botones[i].disabled = false;
-                }
-            } else {
-                // Recorre todos los botones y los deshabilita
-                for (var i = 0; i < botones.length; i++) {
-                    botones[i].disabled = true;
-                }
-            }
-
-        };
-
-        var usuarios = allUsers;
-        var tareas = alltask;
-
-
-        function cargaUsuarios() {
-            document.getElementById("addselectUsuario").options.length = 0; // reseteo el select
-            $('#addselectUsuario').append($('<option>', { value: '999', text: 'Seleccionar', selectedIndex: 0 }));
-            var jsonData = JSON.parse(JSON.stringify(usuarios))
-            for (var i = 0; i < jsonData.length; i++) {
-                var counter = jsonData[i];
-                $('#addselectUsuario').append($('<option>', {
-                    value: counter[0],
-                    text: counter[1]
-                }));
-            }
-        };
-
-        async function getDatos() {
-            generarTarjetas(tareas);
-        };
-
-        function generarTarjetas(datos) {
-            console.log(datos)
-            let conteos = {};
-            let tareas = {};
-
-            for (let fila of datos) {
-                let idUsuario = fila[8] || 'Sin-Asignar';
-                let estadoTarea = fila[6];
-                let idTarea = fila[0];
-                let comentario = fila[11];
-                let fechaComentario = fila[12];
-
-                if (!conteos[idUsuario]) {
-                    conteos[idUsuario] = {
-                        asignadas: 0,
-                        enProceso: 0,
-                        cerradas: 0
-                    };
-                }
-
-                if (!tareas[idTarea]) {
-                    tareas[idTarea] = {
-                        ...fila,
-                        comentarios: []
-                    };
-
-                    switch (estadoTarea) {
-                        case 1:
-                        case 3:
-                            conteos[idUsuario].asignadas++;
-                            break;
-                        case 2:
-                            conteos[idUsuario].enProceso++;
-                            break;
-                        case 4:
-                            conteos[idUsuario].cerradas++;
-                            break;
-                    }
-                }
-
-                if (comentario) {
-                    tareas[idTarea].comentarios.push({
-                        texto: comentario,
-                        fecha: fechaComentario,
-                        autor: idUsuario
-                    });
-                }
-            }
-            for (let idUsuario in conteos) {
-                let card = createCard(idUsuario, conteos[idUsuario]);
-                if (idUsuario !== 'Sin-Asignar') {
-                    $('#tarjetasUsuarios').append(card);
-                }
-            }
-
-            for (let idTarea in tareas) {
-                let color;
-                if (tareas[idTarea][6] === 4) { color = 'text-bg-danger' }
-                else if (tareas[idTarea][6] === 3) { color = 'text-bg-warning' } else { color = 'text-bg-success' };
-
-                let task = createTask(tareas[idTarea], tareas[idTarea][8], tareas[idTarea].comentarios, color);
-                if (tareas[idTarea][6] === 4) {
-                    $('#tareasUsuariosCerradas').append(task);
-                } else if (tareas[idTarea][6] === 0) {
-                    $('#tareasSinAsignar').append(task);
-                } else {
-                    $('#tareasUsuarios').append(task);
-                }
-            }
-            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-        }
-
-        function createCard(idUsuario, tareas) {
-            let card = `<div class="card m-1 text-bg-light col-auto card-header-PT">
-                        <div class="card-header text-center">${idUsuario}</div>
-                        <div class="card-body">
-                            <b>Estado de tareas:</b>
-                            <p class="card-text-task">Asignadas: <span>${tareas.asignadas}</span></p>
-                            <p class="card-text-task">En proceso: <span>${tareas.enProceso}</span></p>
-                            <p class="card-text-task">Cerradas: <span>${tareas.cerradas}</span></p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <div class="d-grid gap-1 d-md-flex justify-content-md-end ">
-                                    <button class="btn btn-primary -md" type="button" place-holder="Ver"
-                                        onclick="viewTask('${idUsuario}');"><i class="fa-solid fa-eye"></i></button>
-                                        
-                                        <button class="btn btn-primary -md" type="button" place-holder="Cerradas" title="Cerradas"
-                                        onclick="viewTaskClose('${idUsuario}');"><i class="fa-solid fa-thumbs-up"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-            return card;
-        }
-
-        function createTask(tarea, usuario, comentarios, color) {
-            // Crear las opciones del select con el valor seleccionado a
-            let options = [
-                { value: '999', text: 'Seleccionar' },
-                { value: '0', text: 'Sin Asignar' },
-                { value: '1', text: 'Asignada' },
-                { value: '2', text: 'En Proceso' },
-                { value: '3', text: 'En Espera' },
-                { value: '4', text: 'Cerrado' }
-            ].map(option =>
-                `<option value="${option.value}" ${tarea[6] == option.value ? 'selected' : ''}>${option.text}</option>`
-            ).join('');
-
-            // Crear un elemento de lista para cada comentario
-            let listaComentarios = '';
-            if (comentarios) {
-                listaComentarios = comentarios.map(comentario =>
-                    `<div class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="text-body-secondary">${comentario.autor} - ${formatFecha(comentario.fecha)}</small>
-                    </div>
-                    <p class="mb-1">${comentario.texto}</p>
-                </div>`
-                ).join('');
-            }
-
-            let task = `<div class="card m-1 text-bg-light col-2 card-header-PT cardTask"  id="${tarea[0]}" data-usuario="${usuario || 'SinAsignar'}">
-            <div class="card-header text-center ${color}">${tarea[1]}</div>
-            <div class="card-body col-12">
-                <form id="formTask_${tarea[0]}" action="">
-                    <input type="text"  id="inputTaskId_${tarea[0]}" value="${tarea[0]}" style="display: none;">
-                    <input type="text"  id="inputUserId_${tarea[0]}" value="${tarea[7]}" style="display: none;">
-                    <chi-label for="textDescripcion" ata-placement="top" data-toggle="tooltip" title="" data-original-title="">
-                        Descripción</chi-label>
-                    <textarea class="form-control text-left" style="min-width: 100%" name="textDescripcion" id="textDescripcion" cols="34" rows="5" disabled>${tarea[2]}</textarea>
-                    ${tarea[6] == 0 ? `
-                                    <chi-label for="udpSelectUsuario_${tarea[0]} ata-placement="top" data-toggle="tooltip"
-                                        title="" data-original-title="Seleccione el Usuario">
-                                        Usuario</chi-label>
-                                    <select class="form-select form-select-sm col-12" id="udpSelectUsuario_${tarea[0]}"
-                                        aria-label="Small select example">
-                                        <option value="999" selectedindex="0">Seleccionar</option>
-                                        <option value="1">RomanA</option>
-                                        <option value="2">FlorenciaR</option>
-                                        <option value="3">MatiasA</option>
-                                        <option value="4">ConradoG</option>
-                                     </select>`
-                    : ''}<chi-label for="selectStatus" ata-placement="top" data-toggle="tooltip" title="" data-original-title="Seleccione el estado">
-                        Estado</chi-label>
-                        <select class="form-select form-select-sm col-12" id="selectStatus_${tarea[0]}" aria-label="Small select example">
-                            ${options}
-                        </select>
-                    <chi-label for="textObservaciones_${tarea[0]}" ata-placement="top" data-toggle="tooltip" title="" data-original-title="">
-                        Observaciones</chi-label>
-                    <textarea class="form-control text-left" name="textObservaciones" id="textObservaciones_${tarea[0]}" cols="34" rows="3" ${tarea[6] == 4 ? 'disabled' : ''}></textarea>
-                    <chi-label for="textObservaciones" ata-placement="top" data-toggle="tooltip" title="" data-original-title="">
-                    
-                        <chi-label for="fecha_inicio" ata-placement="top" data-toggle="tooltip" title="" data-original-title="">Fecha de Inicio</chi-label>
-                        <input type="text" class="form-control" id="fecha_inicio" value="${formatFecha(tarea[3])}" disabled>
-                    <small>Comentarios anteriores</small></chi-label>
-                    <div class="list-group">
-                        ${listaComentarios}
-                    </div>
-
-                    <div class="card-footer text-center">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <div class="d-grid gap-1 d-md-flex justify-content-md-end ">
-                                ${tarea[6] == 4 ? '' : `<button class="btn btn-primary btn-sm" type="button" onclick="saveTask('${tarea[0]}');">Guardar</button>`}
-                                <button class="btn btn-dark btn-sm" type="reset">Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>`;
-            return task;
-        }
-
-        function Addtask() {
-            // Resetea el formulario dentro del modal
-            $('#ModalForm')[0].reset();
-            $('addselectUsuario').prop('selectedIndex', 0);
-            $('addselectStatus').prop('selectedIndex', 0);
-            $("#modalTotal").modal("toggle");
-        };
-
-        function closeModal() {
-            $("#modalTotal").modal("toggle");
-        };
-
-        function addNewTask() {
-            let addNameTask = $("#addNameTask").val();
-            let addtextDescripcion = $("#addtextDescripcion").val();
-            let select1 = document.getElementById("addselectUsuario");
-            let addselectUsuario = select1.options[select1.selectedIndex].value;
-            let addselectUsuarioName = select1.options[select1.selectedIndex].text;
-            let select2 = document.getElementById("addselectStatus");
-            let addselectStatus = Number(select2.options[select2.selectedIndex].value);
-            let datepicker1 = $("#datepicker1").val();
-            let datepicker2 = $("#datepicker2").val();
-
-            // obtengo el id y sumo uno para agregar la proxima tarea
-            var maxId = Math.max(...tareas.map(task => task[0]));
-            var nextId = maxId + 1;
-            var fechaCreacion = formatFecha(new Date());
-            if (addselectUsuario == '999') {
-                alert('Debe seleccionar un usuario!');
-                return;
-            };
-            if (addselectStatus == 'Seleccionar') {
-                alert('Debe seleccionar un estado!');
-                return;
-            };
-
-            //Agrego la tarea 
-            tareas.push([nextId, addNameTask, addtextDescripcion, fechaCreacion, null, null, addselectStatus, addselectUsuario, addselectUsuarioName, null, null, null, null],)
-
-            closeModal();
-            // Vaciar los contenedores de las tarjetas
-            $('#tarjetasUsuarios').empty();
-            $('#tareasUsuarios').empty();
-            $('#tareasUsuariosCerradas').empty();
-            $('#tareasSinAsignar').empty();
-            generarTarjetas(tareas);
-        };
-
-        function saveTask(id) {
-            // Índices de los campos que quieres modificar
-            let estadoIndex = 6; // El índice del campo ESTADO en tus datos
-            let idComentarioIndex = 9; // El índice del campo ID_COMENTARIO en tus datos
-            let tareaIndex = 10; // El índice del campo TAREA en tus datos
-            let comentarioIndex = 11; // El índice del campo COMENTARIO en tus datos
-            let fechaComentarioIndex = 12; // El índice del campo FECHA_COMENTARIO en tus datos
-
-            // nuevos valores
-            let nuevoEstado = Number($(`#selectStatus_${id} option:selected`).val());
-            let nuevoComentario = $(`#textObservaciones_${id}`).val();
-            let idTarea = Number($(`#inputTaskId_${id}`).val());
-
-            // obtengo el id y sumo uno para agregar la proxima tarea
-            let maxId = Math.max(...tareas.map(task => task[idComentarioIndex]));
-            let idcomentarioGenerado = maxId + 1;
-
-            // Modifica los campos
-            tareas.forEach(task => {
-                if (task[0] == idTarea) { // Solo modifica la tarea con el ID especificado
-                    task[estadoIndex] = nuevoEstado;
-                    task[idComentarioIndex] = idcomentarioGenerado;
-                    task[tareaIndex] = idTarea;
-                    task[comentarioIndex] = nuevoComentario;
-                    task[fechaComentarioIndex] = new Date().toISOString(); // Fecha actual
-                }
-            });
-
-            // Vaciar los contenedores de las tarjetas
-            $('#tarjetasUsuarios').empty();
-            $('#tareasUsuarios').empty();
-            $('#tareasUsuariosCerradas').empty();
-            $('#tareasSinAsignar').empty();
-            generarTarjetas(tareas);
-        };
-
-
-        function viewTask(idUsuario) {
-            let tareas = $(`#tareasUsuarios .card[data-usuario="${idUsuario}"]`);
-            let isVisible = tareas.is(':visible');
-
-            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-
-            if (isVisible) {
-                tareas.hide();
-            } else {
-                tareas.show();
-            }
-        }
-        function viewTaskClose(idUsuario) {
-            let tareas = $(`#tareasUsuariosCerradas .card[data-usuario="${idUsuario}"]`);
-            let isVisible = tareas.is(':visible');
-
-            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-
-            if (isVisible) {
-                tareas.hide();
-            } else {
-                tareas.show();
-            }
-        }
-
-        function viewTaskSinAsignar(idUsuario) {
-            let tareas = $(`#tareasSinAsignar .card[data-usuario="${idUsuario}"]`);
-            let isVisible = tareas.is(':visible');
-
-            $('#tareasUsuarios .card, #tareasUsuariosCerradas .card, #tareasSinAsignar .card').hide();
-
-            if (isVisible) {
-                tareas.hide();
-            } else {
-                tareas.show();
-            }
-        }
-
-        function formatFecha(fecha) {
-            var fecha = new Date(fecha);
-            var dia = fecha.getDate();
-            var mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
-            var año = fecha.getFullYear();
-            var hora = fecha.getHours();
-            var minuto = fecha.getMinutes();
-
-            if (dia < 10) dia = '0' + dia;
-            if (mes < 10) mes = '0' + mes;
-            if (hora < 10) hora = '0' + hora;
-            if (minuto < 10) minuto = '0' + minuto;
-
-            var fechaFormateada = dia + '/' + mes + '/' + año + ' ' + hora + ':' + minuto;
-            return fechaFormateada
-        }
     </script>
-
-
 </body>
 
 </html>
