@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/iconos/favicon-32x32.png">
+
     <!-- font-awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -33,9 +37,8 @@
             <div>
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="./imagenes/descarga.png" alt="Login" width="90" height="55"
-                                class="img-responsive">
+                        <a class="navbar-brand" href="./index.html">
+                            <img src="./imagenes/descarga.png" width="90" height="55">
                             <span class="titlePage">Task Manager - TP</span> </a>
                         <div class="titlePage" id="menu">Hola <span id="nombre"></span></div>
                         <div class=" navbar-toggler-right">
@@ -56,17 +59,19 @@
             <br>
             <form>
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombreContacto" required>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" required>
+                <!-- <span id="emailOK"></span> -->
+                <br>
                 <label for="mensaje">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Enviar" onclick="sendMail();">
             </form>
         </div>
         <div>
             <div class="info-CAC">
-                <img class="logo-cac-contacto" src="imagenes/logo CAC.png" alt>
+                <img class="logo-cac-contacto" src="imagenes/logo CAC.png">
                 <div class="datos-intro-cac">
                     <h2 class="title-intro-cac">¿Qué es codo a codo?</h2>
                     <div class="intro-cursos">
@@ -77,7 +82,7 @@
                             inserción
                             laboral en el sector IT, necesarias para mejorar la empleabilidad de las personas.
                             Modalidad: 2 clases virtuales sincrónicas por semana de una duración de 90 minutos cada una.
-                        </p class="Text-md-CAC">
+                        </p>
                         <p class="Text-md-CAC">Curso autoasistido de habilidades blandas.</p>
                         <p class="Text-md-CAC"> Duración: 20 semanas</p>
                     </div>
@@ -98,9 +103,47 @@
     <!-- Datos de Sesion -->
     <script src="./js/sesiones.js"></script>
     <script>
+        
         $(window).on('load', function () {
             actualizarEstadoSesion();
         });
+
+        document.getElementById('nombreContacto').addEventListener('input', function () {
+            campo = event.target;
+            let datos = campo.value;
+
+            // chequeo que el nombre tenga minimo 3 letras
+            if (datos.length > 3) {
+                document.getElementById("nombreContacto").style.backgroundColor = "lightgreen";
+            } else {
+                document.getElementById("nombreContacto").style.backgroundColor = 'lightyellow';
+
+            }
+        });
+
+        document.getElementById('email').addEventListener('input', function () {
+            campo = event.target;
+
+            let reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            // chequeo que el mail contenga @ y dominio.xx
+            if (reg.test(campo.value)) {
+                document.getElementById("email").style.backgroundColor = "lightgreen";
+            } else {
+                document.getElementById("email").style.backgroundColor = 'lightyellow';
+            }
+        });
+
+
+
+        function sendMail() {
+            let name = document.getElementById("nombreContacto").value
+            if (!name) {
+                alert('Debe completar los datos')
+                return;
+            }
+            alert(`Gracias por sus comentarios ${name}, a la brevedad recibira noticias nuestras!`);
+        };
     </script>
 </body>
 

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/iconos/favicon-32x32.png">
+
     <!-- font-awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -13,6 +17,7 @@
         crossorigin="anonymous"></script>
     <!-- Estilos -->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contacto.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,9 +35,8 @@
             <div>
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="./imagenes/descarga.png" alt="Login" width="90" height="55"
-                                class="img-responsive">
+                        <a class="navbar-brand" href="./index.html">
+                            <img src="./imagenes/descarga.png" width="90" height="55">
                             <span class="titlePage">Task Manager - TP</span> </a>
                         <div class="titlePage" id="menu">Hola <span id="nombre"></span></div>
                         <div class=" navbar-toggler-right">
@@ -48,82 +52,19 @@
         </section>
     </header>
     <br>
-    <section class="content">
-        <div class="container-fluid col-8">
-            <div class="card-deck">
-                <div class="card border-card mb-3" onclick="checkClick('1')">
-                    <div class="m-0 border-0">
-                        <p class="card-header">Usuario</p>
-                    </div>
-                    <div class="text-center">
-                        <span class="TextoMd">Crear un usuario para la Aplicación</span>
-                    </div>
-                </div>
-                <div class="card border-card mb-3" onclick="checkClick('2')">
-                    <div class="m-0 border-0">
-                        <p class="card-header">Administrador</p>
-                    </div>
-                    <div class="text-center">
-                        <span class="TextoMd">Crear un usuario Administrador para la gestion de tareas</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-        </div>
-        <div class="container-fluid col-6">
-            <div class="mb-1 row">
-                <div class="row g-2">
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Nombre">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Apellido">
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <br>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Correo">
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <br>
-                        <label for="inputcantidad" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="inputcantidad" value="1"
-                            onclick="checkCantidad();">
-                    </div>
-
-                    <div class="col-6">
-                        <br>
-                        <label for="inputcategoria" class="form-label">Categoria</label>
-                        <select id="inputcategoria" class="form-control" onchange="checkCategoria();">
-                            <option value="0" selected>Seleccionar</option>
-                            <option value="1">Estudiante</option>
-                            <option value="2">Trainee</option>
-                            <option value="3">Junior</option>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <br>
-                        <div class="alert alert-primary" role="alert" id="total">
-                            Total a pagar: $
-                        </div>
-                    </div>
-
-                </div>
-
-                <button class="col-6 btn btn-success" onclick="fncLimpiar();">Borrar</button>
-                <button class="col-6 btn btn-success" onclick="fncResumen('btn');">Resumen</button>
-
-            </div>
+    <section>
+        <div class="container-2">
+            <h2>Formulario de Registro</h2>
+            <br>
+            <form action="">
+                <label for="nombreContacto">Nombre:</label>
+                <input type="text" id="nombreContacto" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" required>
+                <br>
+                <input type="submit" value="Enviar" onclick="registrar(event);">
+                <input type="reset" value="Cancelar">
+            </form>
         </div>
     </section>
 
@@ -141,85 +82,21 @@
         window.onload = function () {
             actualizarEstadoSesion();
         };
-    </script>
-    <script>
-        function fncLimpiar() {
-            document.getElementById("inputcantidad").value = "1"
-            document.getElementById("inputcategoria").options.selectedIndex = 0
-            document.getElementById("total").innerHTML = "Total a pagar: $"
-        };
 
-        function fncResumen(type) {
-            let ahorro;
-            let cantidad = document.getElementById("inputcantidad").value;
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
+        function registrar(event) {
+            event.preventDefault();
+            let nombreContacto = document.getElementById("nombreContacto").value;
+            let apellido = document.getElementById("apellido").value;
 
-
-            if (!cantidad || cantidad < 1) {
-                alert("Cantidad no puede ser menor a 1");
-                document.getElementById("total").innerHTML = "Total a pagar: $"
-                return;
-            };
-
-            if (categoria == "0" || !cantidad || cantidad < 1) {
-                alert("Debe selecionar una categoria");
-                document.getElementById("total").innerHTML = "Total a pagar: $"
+            if (!nombreContacto || !apellido) {
+                alert('Debe completar los datos')
                 return;
             } else {
-                let categoriaInt = 0;
-                let montoTotal = 200 * parseInt(cantidad);
-                switch (categoria) {
-                    case "1": categoriaInt = 0.80; break;
-                    case "2": categoriaInt = 0.50; break;
-                    case "3": categoriaInt = 0.15; break;
-                    //default: alert ("La edad no es crítica"); break;
-                }
-                ahorro = montoTotal - (montoTotal * categoriaInt);
-                document.getElementById("total").innerHTML = "Total a pagar: $ " + ahorro
-            };
-            if (type == 'btn') {
-                alert(`Categoria: ${document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].text}
-Cantidad de licencias: ${cantidad}
-Total a pagar $: ${ahorro}`);
+                let usuarioNuevo = nombreContacto + apellido.charAt(0).toUpperCase();
+                registerUser(usuarioNuevo, allUsers);
+                guardarNombre(usuarioNuevo)
             };
         };
-
-        function checkClick(id) {
-            switch (id) {
-                case "1": document.getElementById("inputcategoria").options.selectedIndex = 1; break;
-                case "2": document.getElementById("inputcategoria").options.selectedIndex = 2; break;
-                case "3": document.getElementById("inputcategoria").options.selectedIndex = 3; break;
-            }
-            fncResumen();
-        };
-
-        function checkCantidad() {
-            let cantidad = document.getElementById("inputcantidad").value;
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
-            if (cantidad < 1 || categoria == "0") {
-                document.getElementById("inputcantidad").value = "1"
-                return;
-            };
-
-            if (cantidad < 1) {
-                document.getElementById("inputcantidad").value = "1"
-                //document.getElementById("total").innerHTML = "Total a pagar: $"
-                fncResumen();
-            } else {
-                fncResumen();
-            };
-        };
-
-        function checkCategoria() {
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
-            if (categoria == "0") {
-                document.getElementById("total").innerHTML = "Total a pagar: $"
-                return;
-            } else {
-                fncResumen();
-            }
-        };
-
     </script>
 </body>
 

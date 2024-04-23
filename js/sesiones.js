@@ -1,25 +1,20 @@
-function guardarNombre() {
-    var nombre = document.getElementById('nombre').value;
-    var password = document.getElementById('password').value;
-    if (!nombre) {
-        alert('Debe colocar su usuario');
-        return;
-    };
-    if (!password) {
-        alert('Debe colocar su clave');
-        return;
-    };
-
+function guardarNombre(nombre) {
     //Guardo el usuario para poder mostrarlo en las siguientes paginas
     localStorage.setItem('nombre', nombre);
-
     // Redirige al usuario a la página index.html
     window.location.href = "index.html";
 }
 
+function guardoLocalStorage(usuarios) {
+    //guardo todos los usuarios registrados
+    localStorage.setItem('users', JSON.stringify(usuarios));
+};
+
 function mostrarNombre() {
     var nombre = localStorage.getItem('nombre');
-    if (!nombre) {nombre = 'Anonimo, debe loguearse para poder operar'}
+    if (!nombre) {
+        nombre = 'Anonimo, debe loguearse para poder operar'
+    }
     document.getElementById('nombre').textContent = nombre;
 };
 
@@ -48,20 +43,23 @@ function logout() {
 
 
 // Función para registrar un nuevo usuario
-function registerUser(username) {
-    // Guardar los usuarios en localStorage
-    localStorage.setItem('users', JSON.stringify(usuarios1));
+function registerUser(username, usuarios) {
 
-    // Recuperar los usuarios de localStorage
-    var usuarios = JSON.parse(localStorage.getItem('users'));
-    // Agregar un nuevo usuario
-    //usuarios.push([5, 'NuevoUsuario']);
-    registerUser('NuevoUsuario1');
-    // Guardar los usuarios actualizados en localStorage
+    // Guardar los usuarios en localStorage
     localStorage.setItem('users', JSON.stringify(usuarios));
 
     // Recuperar los usuarios de localStorage
+    //var usuarios = JSON.parse(localStorage.getItem('users'));
+
+    // Agregar un nuevo usuario
+    //usuarios.push([5, 'NuevoUsuario']);
+
+    // Guardar los usuarios actualizados en localStorage
+    //localStorage.setItem('users', JSON.stringify(usuarios)); 
+
+    // Recuperar los usuarios de localStorage
     var storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    console.log(storedUsers)
     // Encuentra el ID más alto entre los usuarios existentes
     var maxId = Math.max(...storedUsers.map(user => user[0]), 0);
 
