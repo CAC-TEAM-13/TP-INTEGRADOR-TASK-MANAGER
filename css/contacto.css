@@ -202,14 +202,14 @@ input[type="submit"]:hover {
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
+}
 
-  .inputContainer {
+.inputContainer {
     position: relative;
     height: 45px;
     width: 90%;
     margin-bottom: 17px;
-  }
+}
 
 .inputReg {
     position: absolute;
@@ -224,9 +224,9 @@ input[type="submit"]:hover {
     outline: none;
     background: none;
     z-index: 1;
-  }
-  
-  .labelReg {
+}
+
+.labelReg {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -236,4 +236,4 @@ input[type="submit"]:hover {
     font-size: 16px;
     transition: 0.5s;
     z-index: 0;
-  }
+}
