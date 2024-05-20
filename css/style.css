@@ -423,7 +423,7 @@ html {
 }
 
 .cardModal {
-    margin: 1em;
+    --margin: 1em;
     width: 100%;
     border: 1rem;
     /* Cambiamos esto a 80% para móviles */
