@@ -1,56 +1,96 @@
-body   {
-    font-family: Arial, sans-serif; 
-    margin: 0; 
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+} */
+
 .container-2 {
     width: 80%;
     margin: 20px auto;
+    text-align: center;
 }
+
+.container-2 h2 {
+    margin: 40px 0 30px 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+}
+
+.registerForm {
+    width: 500px !important;
+}
+
 form {
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
 }
-label, input, textarea {
-    display: block;
+
+
+button,
+input,
+select,
+textarea,
+label {
+    font-family: "Roboto", sans-serif;
+    font-size: 100%;
     margin-bottom: 10px;
+    padding-top: 10px;
 }
-input, textarea {
+
+.checkbox {
+    width: auto;
+}
+
+input,
+textarea,
+select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    border: 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-input[type="submit"] {
-    background-color: #4CAF50;
+
+input[type="submit"]{
+    background-color: var(--third-color);
     color: white;
     border: none;
+    display: flex;
+    border-radius: 10px;
     cursor: pointer;
+    width: auto;
+    margin: auto;
 }
+
 input[type="submit"]:hover {
-    background-color: #45a049;
-} 
-
-
+    background-color: #04830b;
+}
 
 
 .logo-cac-contacto {
     max-width: 100%;
     max-height: 100%;
-    align-self: center; 
-    width: 25%; /* Hacer que la imagen ocupe el 25% del contenedor en pantallas grandes */
-    transition: max-width 0.5s ease, width 0.5s ease, align-self 0.5s ease; /* Transición suave del tamaño de la imagen */
+    align-self: center;
+    width: 16%;
+    height: auto;
+    /* Hacer que la imagen ocupe el 25% del contenedor en pantallas grandes */
+    transition: max-width 0.5s ease, width 0.5s ease, align-self 0.5s ease;
+    /* Transición suave del tamaño de la imagen */
 }
 
-.title-intro-cac {    color: black;
+.title-intro-cac {
+    color: black;
     text-align: center;
-    padding: 0;
+    padding: 10px;
     text-decoration: none;
-    font-family: Arial, sans-serif;
-    margin: 0;
+    font-family: "Roboto", sans-serif;
+    margin-top: 40px;
     font-size: xx-large;
     font-weight: bold;
 
@@ -60,7 +100,7 @@ input[type="submit"]:hover {
     color: black;
     padding: 0;
     text-decoration: none;
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: 2%;
     font-size: x-large;
     font-weight: bold;
@@ -75,24 +115,32 @@ input[type="submit"]:hover {
     cursor: pointer;
     color: white;
     background-color: #335f8b;
-    font-size: 16px; /* Tamaño de la fuente ajustado para dispositivos móviles */
+    font-size: 16px;
+    /* Tamaño de la fuente ajustado para dispositivos móviles */
     font-weight: bold;
     text-decoration: none;
-    width: 100%; /* Ancho completo del contenedor */
-    max-width: 200px; /* Máximo ancho del botón para evitar que se extienda demasiado */
-    padding: 10px; /* Añadido padding para mejorar la apariencia en dispositivos móviles */
-    margin: 0 auto; /* Centrar el botón en el contenedor */
-    transition: color 0.3s ease; /* Transición suave del color del texto */
+    width: 100%;
+    /* Ancho completo del contenedor */
+    max-width: 200px;
+    /* Máximo ancho del botón para evitar que se extienda demasiado */
+    padding: 10px;
+    /* Añadido padding para mejorar la apariencia en dispositivos móviles */
+    margin: 0 auto;
+    /* Centrar el botón en el contenedor */
+    transition: color 0.3s ease;
+    /* Transición suave del color del texto */
 }
 
 .boton-cursos-CAC:hover {
-    color: violet; /* Cambio de color del texto al pasar el mouse */
+    color: violet;
+    /* Cambio de color del texto al pasar el mouse */
 }
 
 .datos-intro-cac {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar los elementos horizontalmente */
+    align-items: center;
+    /* Centrar los elementos horizontalmente */
     margin: 3%;
 }
 
@@ -101,31 +149,136 @@ input[type="submit"]:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 10px;
     margin: 2%;
     grid-template-columns: 25% 65%;
-    flex-direction: row; /* Mantener la dirección del flexbox en fila por defecto */
+    flex-direction: row;
+    /* Mantener la dirección del flexbox en fila por defecto */
 }
 
+.Text-md-CAC {
+    font-size: 16px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 0px;
+}
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
     .info-CAC {
 
-        display:  flex;
-        flex-direction: column; /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+        display: flex;
+        flex-direction: column;
+        /* Cambiar la dirección del flexbox a columna en pantallas pequeñas */
+    }
+
+    .container-2 h2 {
+        font-size: 120%;
     }
 
     .logo-cac-contacto {
-        width: 70%;
-        align-self: center; /* Centrar la imagen verticalmente en pantallas pequeñas */
-        max-width: 70%; /* Reducir el tamaño de la imagen en pantallas pequeñas */
-        order: -1; /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
+        width: 40%;
+        align-self: center;
+        /* Centrar la imagen verticalmente en pantallas pequeñas */
+        max-width: 60%;
+        /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        /* order: -1; */
+        /* Cambiar el orden del elemento para que se posicione primero en pantallas pequeñas */
     }
 
     .datos-intro-cac {
-        align-items: center; /* Centrar los elementos horizontalmente */
+        align-items: center;
+        /* Centrar los elementos horizontalmente */
         text-align: center;
         margin: 3%;
     }
 
+}
+
+/* Media query para pantallas pequeñas */
+/* @media (max-width: 768px) {
+    .info-CAC {
+
+        display:  flex;
+        flex-direction: column;
+    }
+    .container-2 h2{
+        font-size: 80%;
+    }
+
+    .logo-cac-contacto {
+        width: 70%;
+        align-self: center;
+        max-width: 70%;
+        order: -1;
+    }
+
+    .datos-intro-cac {
+        align-items: center;
+        text-align: center;
+        margin: 3%;
+    }
+
+} */
+
+
+.container-reg {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.container-datos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.inputContainer {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+}
+
+.inputReg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #DADCE0;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+.labelReg {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 0 4px;
+    background-color: white;
+    color: #DADCE0;
+    font-size: 16px;
+    transition: 0.5s;
+    z-index: 0;
+}
+
+.iframeCAC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.boton cursos {
+    margin-bottom: 40px;
+}
+
+.iframeCAC {
+    margin: 80px;
 }

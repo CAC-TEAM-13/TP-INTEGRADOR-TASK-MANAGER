@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/ico/favicon-32x32.png">
+
     <!-- font-awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -13,220 +17,158 @@
         crossorigin="anonymous"></script>
     <!-- Estilos -->
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/resgister.css">
+    <link rel="stylesheet" href="./css/contacto.css">
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         data-mutate-approach="sync"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>Task Manager</title>
+    <title>Task Manager | Registro</title>
 </head>
 
 <body>
     <header>
-        <section>
-            <div>
-                <nav class="navbar-navbar-expand-lg">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="./imagenes/descarga.png" alt="Login" width="90" height="55"
-                                class="img-responsive">
-                            <span class="titlePage">Task Manager - TP</span> </a>
-                        <div class="titlePage" id="menu">Hola <span id="nombre"></span></div>
-                        <div class="navbar-toggler-right">
-                            <div class="navbar-nav me-2">
-                                <span><a class="nav-link" href="./index.html">Inicio</a></span>
-                                <span><a class="nav-link" href="./help.html">Ayuda</a></span>
-                                <span id="sesionEstado"></span>
-                            </div>
+        <div>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./index.html">
+                        <img src="./img/descarga.png" width="90" height="55" alt="descarga">
+                        <span class="titlePage">Task Manager - TP</span> </a>
+                    <!-- <div class="titlePage" id="menu">Hola <span id="nombre"></span></div> -->
+                    <div class=" navbar-toggler-right">
+                        <div class="navbar-nav me-2">
+                            <span><a class="nav-link" href="./index.html">Inicio</a></span>
+                            <span><a class="nav-link" href="./ayuda.html">Ayuda</a></span>
+                            <span id="sesionEstado"></span>
                         </div>
                     </div>
-                </nav>
-            </div>
-        </section>
+                </div>
+            </nav>
+        </div>
     </header>
-    <br>
-    <section class="content">
-        <div class="container-fluid col-8">
-            <div class="card-deck">
-                <div class="card border-card mb-3" onclick="checkClick('1')">
-                    <div class="m-0 border-0">
-                        <p class="card-header">Usuario</p>
-                    </div>
-                    <div class="text-center">
-                        <span class="TextoMd">Crear un usuario para la Aplicación</span>
-                    </div>
-                </div>
-                <div class="card border-card mb-3" onclick="checkClick('2')">
-                    <div class="m-0 border-0">
-                        <p class="card-header">Administrador</p>
-                    </div>
-                    <div class="text-center">
-                        <span class="TextoMd">Crear un usuario Administrador para la gestion de tareas</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section>
+        <div class="container-2">
+            <div>
+                <h2>FORMULARIO DE REGISTRO</h2>
 
-        </div>
-        </div>
-        <div class="container-fluid col-6">
-            <div class="mb-1 row">
-                <div class="row g-2">
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Nombre">
+                <form id="registerForm" class="registerForm" onsubmit="return validateForm()">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="correo">Email:</label>
+                    <input type="email" id="correo" name="correo" required>
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" id="contraseña" name="contraseña" required>
+                    <label for="area">Departamento</label>
+                    <select name="area" id="area" required>
+                        <option value="">Seleccionar</option>
+                        <option value="administracion">Administración</option>
+                        <option value="ventas">Ventas</option>
+                        <option value="produccion">Producción</option>
+                        <option value="contabilidad">Contabilidad</option>
+                    </select>
+                    <div id="messageContainer">
+                        <p id="message"></p>
+                    </div>
+                    <p class="position-label">Posición:</p>
+                    <div class="radio-center">
+                        <div class="radio-container">
+                            <input type="radio" name="posicion" value="jefe_area" id="jefe_area" required
+                                onchange="showMessage()">
+                            <label for="jefe_area" class="checkbox">Jefe de área</label>
+                        </div>
+                        <div class="radio-container">
+                            <input type="radio" name="posicion" value="empleado" id="empleado" required
+                                onchange="showMessage()">
+                            <label for="empleado" class="checkbox">Empleado</label>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Apellido">
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <br>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Correo">
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <br>
-                        <label for="inputcantidad" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="inputcantidad" value="1"
-                            onclick="checkCantidad();">
-                    </div>
-
-                    <div class="col-6">
-                        <br>
-                        <label for="inputcategoria" class="form-label">Categoria</label>
-                        <select id="inputcategoria" class="form-control" onchange="checkCategoria();">
-                            <option value="0" selected>Seleccionar</option>
-                            <option value="1">Estudiante</option>
-                            <option value="2">Trainee</option>
-                            <option value="3">Junior</option>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <br>
-                        <div class="alert alert-primary" role="alert" id="total">
-                            Total a pagar: $
-                        </div>
-                    </div>
-
-                </div>
-
-                <button class="col-6 btn btn-success" onclick="fncLimpiar();">Borrar</button>
-                <button class="col-6 btn btn-success" onclick="fncResumen('btn');">Resumen</button>
-
+                    <input type="submit" value="Registrar" onclick="validateForm();">
+                </form>
             </div>
         </div>
     </section>
 
-    <footer>
-        <section class="content">
-            <nav class="navbar bottom">
-                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
-                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
-                <a class="navbar-brand" href="#">Términos y Condiciones</a>
-            </nav>
-        </section>
+    <footer class="footer">
+        <a href="./estudiantes.html">Estudiantes</a>
+        <a href="./contacto.html">Contáctanos</a>
+        <a href="#" id="openTerms">Términos y Condiciones</a>
     </footer>
 
     <!-- Datos de Sesion -->
-    <script src="./sesiones.js"></script>
-
+    <script src="./js/sesiones.js"></script>
     <!-- Datos -->
-    <script src="./usuarios.js"></script>
+    <script src="./js/usuarios.js"></script>
+    <!-- Terminos y condiciones -->
+    <script src="./js/terms.js"></script>
+
     <script>
         window.onload = function () {
             actualizarEstadoSesion();
         };
-    </script>
-    <script>
-        function fncLimpiar() {
-            document.getElementById("inputcantidad").value = "1"
-            document.getElementById("inputcategoria").options.selectedIndex = 0
-            document.getElementById("total").innerHTML = "Total a pagar: $"
+
+        function registrar() { //event
+            event.preventDefault();
+            let usuario = document.getElementById("usuario").value;
+            registerUser(usuario, allUsers);
+            guardarNombre(usuario)
         };
 
-        function fncResumen(type) {
-            let ahorro;
-            let cantidad = document.getElementById("inputcantidad").value;
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
+        function validateForm() {
+            var form = document.getElementById("registerForm");
+            var inputs = form.querySelectorAll("input, select");
+            var isValid = true;
 
-
-            if (!cantidad || cantidad < 1) {
-                alert("Cantidad no puede ser menor a 1");
-                document.getElementById("total").innerHTML = "Total a pagar: $"
-                return;
-            };
-
-            if (categoria == "0" || !cantidad || cantidad < 1) {
-                alert("Debe selecionar una categoria");
-                document.getElementById("total").innerHTML = "Total a pagar: $"
-                return;
-            } else {
-                let categoriaInt = 0;
-                let montoTotal = 200 * parseInt(cantidad);
-                switch (categoria) {
-                    case "1": categoriaInt = 0.80; break;
-                    case "2": categoriaInt = 0.50; break;
-                    case "3": categoriaInt = 0.15; break;
-                    //default: alert ("La edad no es crítica"); break;
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].hasAttribute("required") && !inputs[i].value.trim()) {
+                    isValid = false;
+                    inputs[i].style.border = "1px solid red";
+                } else {
+                    inputs[i].style.border = "1px solid #ccc";
                 }
-                ahorro = montoTotal - (montoTotal * categoriaInt);
-                document.getElementById("total").innerHTML = "Total a pagar: $ " + ahorro
-            };
-            if (type == 'btn') {
-                alert(`Categoria: ${document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].text}
-Cantidad de licencias: ${cantidad}
-Total a pagar $: ${ahorro}`);
-            };
-        };
-
-        function checkClick(id) {
-            switch (id) {
-                case "1": document.getElementById("inputcategoria").options.selectedIndex = 1; break;
-                case "2": document.getElementById("inputcategoria").options.selectedIndex = 2; break;
-                case "3": document.getElementById("inputcategoria").options.selectedIndex = 3; break;
             }
-            fncResumen();
-        };
 
-        function checkCantidad() {
-            let cantidad = document.getElementById("inputcantidad").value;
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
-            if (cantidad < 1 || categoria == "0") {
-                document.getElementById("inputcantidad").value = "1"
-                return;
-            };
+            var emailInput = form.querySelector('input[type="email"]');
+            var emailValue = emailInput.value.trim();
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (cantidad < 1) {
-                document.getElementById("inputcantidad").value = "1"
-                //document.getElementById("total").innerHTML = "Total a pagar: $"
-                fncResumen();
-            } else {
-                fncResumen();
-            };
-        };
-
-        function checkCategoria() {
-            let categoria = document.getElementById("inputcategoria").options[document.getElementById("inputcategoria").selectedIndex].value;
-            if (categoria == "0") {
-                document.getElementById("total").innerHTML = "Total a pagar: $"
-                return;
-            } else {
-                fncResumen();
+            if (!emailPattern.test(emailValue)) {
+                isValid = false;
+                emailInput.style.border = "1px solid red";
             }
-        };
 
+            if (isValid) {
+                var confirmation = confirm("Su registro se completó con éxito. Gracias por utilizar Task Manager.");
+                if (confirmation) {
+                    registrar();
+                    window.location.href = "./index.html";
+                } else {
+                    window.location.href = "./contacto.html";
+                }
+            } else {
+                alert("Por favor, complete todos los campos obligatorios correctamente.");
+            }
+
+
+        }
+
+        function showMessage() {
+            var message = document.getElementById("message");
+            var jefeArea = document.getElementById("jefe_area");
+            if (jefeArea.checked) {
+                message.textContent = "Estarás a cargo de asignar las tareas a tu área";
+            } else {
+                message.textContent = "Tu Jefe de área te asignará tus tareas";
+            }
+        }
     </script>
+
 </body>
 
 </html>

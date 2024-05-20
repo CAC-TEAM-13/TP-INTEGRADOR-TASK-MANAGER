@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/ico/favicon-32x32.png">
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- font-awesome -->
@@ -24,60 +28,77 @@
 <body>
 
     <header>
-
-    </header>
-
-    <main>
-        <form>
-            <section class="content container-fluid col-12">
-                <div class="d-flex justify-content-center">
-                    <div class=" text-center">
-
-                        <label class="form-label" for="nombre">Nombre</label>
-                        <input type="text" id="nombre" class="form-control" />
-
-                        <label class="form-label" for="password">Clave</label>
-                        <input type="password" id="password" class="form-control" />
-                        <br>
-                        <button type="button" class="btn btn-primary btn-block mb-4 col-12"
-                            onclick="guardarNombre()">Sign
-                            in</button>
-
-                        <div class="col d-flex justify-content-center">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                                <label class="form-check-label" for="form2Example31"> Recordar </label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <a href="#!">Olvidaste la contraseña?</a>
+        <div>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./index.html">
+                        <img src="./img/descarga.png" width="90" height="55" alt="descarga">
+                        <span class="titlePage">Task Manager - TP</span> </a>
+                    <!-- <div class="titlePage" id="menu">Ingrese sus datos</div> -->
+                    <div class=" navbar-toggler-right">
+                        <div class="navbar-nav me-2">
+                            <span><a class="nav-link" href="./index.html">Inicio</a></span>
+                            <span><a class="nav-link" href="./ayuda.html">Ayuda</a></span>
+                            <span id="sesionEstado"></span>
                         </div>
                     </div>
                 </div>
-
-            </section>
-        </form>
-
-    </main>
-    <footer>
-        <section class="content">
-            <nav class="navbar bottom">
-                <a class="navbar-brand" href="./estudiantes.html">Estudiantes</a>
-                <a class="navbar-brand" href="./contacto.html">Contáctanos</a>
-                <a class="navbar-brand" href="#">Términos y Condiciones</a>
             </nav>
-        </section>
+        </div>
+    </header>
+
+    <main>
+        <div class="d-flex justify-content-center">
+            <div class=" text-center">
+
+                <label class="form-label" for="nombrelogin">Nombre</label>
+                <input type="text" id="nombrelogin" class="form-control" />
+
+                <label class="form-label" for="password">Clave</label>
+                <input type="password" id="password" class="form-control" />
+                <br>
+                <button type="button" class="btn btn-primary btn-block mb-4 col-12" onclick="validar();">Entrar</button>
+                <div class="flex-login-center">
+                    <span>
+                        <p> Si no eres usuario toca <a href="./register.html">Aqui</a></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <a href="./estudiantes.html">Estudiantes</a>
+        <a href="./contacto.html">Contáctanos</a>
+        <a href="#" id="openTerms">Términos y Condiciones</a>
     </footer>
 
     <!-- Datos de Sesion -->
     <script src="./js/sesiones.js"></script>
     <!-- Datos -->
     <script src="./js/usuarios.js"></script>
+    <!-- Terminos y condiciones -->
+    <script src="./js/terms.js"></script>
     <script>
         window.onload = function () {
             actualizarEstadoSesion();
+            guardoLocalStorage(allUsers)
         };
+
+        function validar() {
+            let nombre = document.getElementById('nombrelogin').value;
+            let password = document.getElementById('password').value;
+            if (!nombre) {
+                alert('Debe colocar su usuario');
+                return;
+            };
+            if (!password) {
+                alert('Debe colocar su clave');
+                return;
+            };
+            guardarNombre(nombre)
+        }
     </script>
+
 </body>
 
 </html>

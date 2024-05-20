@@ -1,0 +1,81 @@
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container23 {
+            width: 45%;
+            height: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            position: relative;
+        }
+        .container23:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+        }
+        #form-title {
+            background-color: #1D345E;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px 8px 8px 8px; 
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px; 
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:hover,
+        input[type="password"]:hover,
+        select:hover {
+            border-color: #888;
+        }
+        input[type="image"] {
+            width: 100px; 
+            height: 100px; 
+            padding: 0px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease; /*Transición para background y transform */
+            display: block; 
+            margin: 0 auto; 
+            margin-bottom: 0px; 
+        }
+        input[type="image"]:hover {
+            transform: scale(1.1); /* Escalar el botón al 110% */
+        }
+        /* Estilos para resaltar la posición y los checkboxes */
+        .position-label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .checkbox-label {
+            font-size: 16px;
+        }
+        #messageContainer {
+            margin-bottom: 10px;
+        }
+        #message {
+            font-size: 14px;
+            color: green;
+        }
+        
